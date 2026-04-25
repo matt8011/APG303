@@ -475,6 +475,77 @@
   .page-section { display: none; }
   .page-section.active { display: block; }
 
+  /* ── DOSSIER BOX ── */
+  .dossier-box {
+    background: #06060f;
+    border: 2px solid;
+    border-left-width: 6px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    font-family: 'Courier New', monospace;
+  }
+  .dossier-label {
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+  }
+  .dossier-title {
+    font-size: 11px;
+    font-style: italic;
+    color: #ccccff;
+    margin: 4px 0;
+    line-height: 1.5;
+  }
+  .dossier-meta {
+    font-size: 10px;
+    color: #888899;
+    margin-top: 6px;
+  }
+
+  /* ── HINT TEXT ── */
+  [data-hint] {
+    color: #00ccff;
+    text-decoration: underline dotted #00ccff;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  [data-hint]:hover { color: #ffffff; text-decoration: underline #ffffff; }
+  [data-hint]::after {
+    content: ' 🔍';
+    font-size: 0.8em;
+    vertical-align: super;
+    font-style: normal;
+    text-decoration: none;
+    display: inline-block;
+  }
+  /* suppress hints in non-body areas */
+  .section-header [data-hint],
+  .script-text [data-hint],
+  .marquee-inner [data-hint],
+  .sidebar-text [data-hint],
+  .sidebar-title [data-hint],
+  .gif-placeholder [data-hint],
+  .fire-text [data-hint] {
+    color: inherit; text-decoration: none; cursor: default; pointer-events: none;
+  }
+  .section-header [data-hint]::after,
+  .script-text [data-hint]::after,
+  .marquee-inner [data-hint]::after,
+  .sidebar-text [data-hint]::after,
+  .sidebar-title [data-hint]::after,
+  .gif-placeholder [data-hint]::after,
+  .fire-text [data-hint]::after { content: ''; }
+  .hint-popup {
+    position: fixed;
+    z-index: 10001;
+    width: 260px;
+    box-shadow: 3px 3px 0 #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    display: none;
+  }
+  .hint-popup.visible { display: block; }
+
   /* ── POPUP ADS ── */
   .popup-ad {
     position: fixed;
@@ -590,7 +661,7 @@
   </div>
   <div class="visitor-counter">
     You are visitor #
-    <span style="background:#000000; color:#00ff00; padding: 0 4px; font-family:monospace; letter-spacing:2px;">004,892</span>
+    <span id="visitor-num" style="background:#000000; color:#00ff00; padding: 0 4px; font-family:monospace; letter-spacing:2px;">000,000</span>
     to this page
   </div>
 </div>
@@ -598,9 +669,11 @@
 <div class="nav-bar">
   <a href="#home" data-page="home">HOME</a>
   <a href="#evidence" data-page="evidence">THE EVIDENCE</a>
-  <a href="#acorns" data-page="acorns">FORBIDDEN ACORNS</a>
-  <a href="#shellfish" data-page="shellfish">SHELLFISH CONSPIRACY</a>
-  <a href="#steatite" data-page="steatite">STEATITE SECRETS</a>
+  <a href="#gamble" data-page="gamble">FEASTS OF DEFIANCE</a>
+  <a href="#arkush" data-page="arkush">THE BONE DOSSIER</a>
+  <a href="#panich" data-page="panich">SEEDS OF RESISTANCE</a>
+  <a href="#schneider" data-page="schneider">REFUGE ZONES: CLASSIFIED</a>
+  <a href="#curry" data-page="curry">GONE FISHING!!</a>
   <a href="#contact" data-page="contact">CONTACT WEBMASTER</a>
   <a href="#guestbook" data-page="guestbook">GUESTBOOK (sign it!!)</a>
   <a href="#sources" data-page="sources" style="color:#ff6600;">SOURCES (yes, real ones)</a>
@@ -643,13 +716,13 @@
       </div>
       <div class="body-text">
         <p class="body-text">
-          The archaeological evidence is <span class="highlight">CLEAR</span>: Indigenous Californian coastal peoples — Chumash, Ohlone, and related communities — were not passive victims of colonization. They were <span class="highlight">active, strategic agents</span> who selectively adapted, resisted, and preserved their foodways under conditions of extreme colonial pressure.
+          The archaeological evidence is <span class="highlight">CLEAR</span>: Indigenous Californian coastal peoples — <span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span>, <span data-hint="Indigenous peoples of the San Francisco Bay and Monterey Bay regions of California. Costanoan was the name applied by Spanish colonizers; Ohlone is the name preferred by descendants today.">Ohlone</span>, and related communities — were not passive victims of colonization. They were <span class="highlight">active, strategic agents</span> who selectively adapted, resisted, and preserved their foodways under conditions of extreme colonial pressure.
         </p>
         <p class="body-text">
-          Whether through feasting ceremonies that reinforced political authority, quietly hunting game that never appeared on mission ration logs, grinding acorns on stones in mission compounds, or fishing at ancestral sites far from colonial oversight — the record is consistent across every line of evidence.
+          Whether through feasting ceremonies that reinforced political authority, quietly hunting game that never appeared on mission <span data-hint="Written logs kept by Spanish missionaries documenting food officially distributed to mission residents. Wild species found archaeologically do not appear in them — exposing the gap between the colonial record and lived reality.">ration logs</span>, grinding acorns on stones in mission compounds, or fishing at ancestral sites far from colonial oversight — the record is consistent across every line of evidence.
         </p>
         <p class="body-text">
-          The "loss narrative" promoted by colonial-era sources is <span class="highlight">contradicted by zooarchaeology, archaeobotany, isotopic analysis, and ethnohistory</span>. These food traditions were defended, maintained, and transmitted.
+          The "<span data-hint="The historical framing that Indigenous cultures were simply erased by European contact. The archaeological evidence on this site directly contradicts it.">loss narrative</span>" promoted by colonial-era sources is <span class="highlight">contradicted by <span data-hint="The study of animal remains from archaeological sites to reconstruct past human diet, hunting practices, and the relationship between people and animals.">zooarchaeology</span>, archaeobotany, <span data-hint="Chemical analysis of stable isotopes preserved in bone or tooth enamel, used to reconstruct the diet, geographic movement, and environmental context of past individuals.">isotopic analysis</span>, and <span data-hint="A research method combining written historical records with anthropological analysis to study Indigenous peoples, bridging the colonial documentary record and the material archaeological evidence.">ethnohistory</span></span>. These food traditions were defended, maintained, and transmitted.
         </p>
         <div style="text-align:center; margin-top:10px; padding:8px; background:#001100; border:1px solid #00ff00;">
           <span class="fire-text" style="font-size:16px;">THE TRUTH WAS IN THE MIDDENS ALL ALONG.</span>
@@ -678,9 +751,9 @@
     <div class="sidebar-box">
       <div class="sidebar-title">QUICK FACTS</div>
       <div class="sidebar-text" style="font-size:10px; line-height:1.8;">
-        <div>&#9658; Chumash: <span style="color:#ffff00;">S. California coast</span></div>
-        <div>&#9658; Ohlone: <span style="color:#ffff00;">N. California missions</span></div>
-        <div>&#9658; Steatite vessels = <span style="color:#ffff00;">cooking tech</span></div>
+        <div>&#9658; <span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span>: <span style="color:#ffff00;">S. California coast</span></div>
+        <div>&#9658; <span data-hint="Indigenous peoples of the San Francisco Bay and Monterey Bay regions of California. Costanoan was the name applied by Spanish colonizers; Ohlone is the name preferred by descendants today.">Ohlone</span>: <span style="color:#ffff00;">N. California missions</span></div>
+        <div>&#9658; <span data-hint="A soft, heat-resistant soapstone quarried and shaped into cooking vessels. Its continued presence in colonial-era archaeological deposits demonstrates technological and cultural continuity across the contact period.">Steatite</span> vessels = <span style="color:#ffff00;">cooking tech</span></div>
         <div>&#9658; Starch grains on <span style="color:#ffff00;">grinding stones</span></div>
         <div>&#9658; Hinterlands = <span style="color:#ffff00;">refuge zones</span></div>
         <div>&#9658; Missions est. <span style="color:#ffff00;">1769 onward</span></div>
@@ -743,21 +816,21 @@
         <div class="fact-box">
           <div class="fact-box-title">&#9733; SHOCKING FACT &#9733;</div>
           <div class="fact-box-text">
-            Chumash leaders didn't just keep cooking their traditional foods after colonization — they kept hosting <span class="highlight">ELABORATE FEASTS</span> as a deliberate political strategy to maintain social authority. The Spanish had no idea this was happening. Or maybe they did and couldn't stop it.
+            <span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span> leaders didn't just keep cooking their traditional foods after colonization — they kept hosting <span class="highlight">ELABORATE FEASTS</span> as a deliberate political strategy to maintain social authority. The Spanish had no idea this was happening. Or maybe they did and couldn't stop it.
           </div>
         </div>
         <div class="evidence-row">
           <span class="evidence-number">1</span>
-          <span>Faunal assemblages, steatite cooking vessels, mortars, and refuse deposits from post-contact Chumash sites in the Santa Barbara region show that traditional subsistence practices and feasting rites continued after European arrival. Gamble cross-references this material evidence with Spanish mission records to establish the pattern. <span class="citation">(Gamble 2002:75–78)</span></span>
+          <span><span data-hint="Collections of animal bones and other remains recovered from an archaeological site — the physical record of what animals were eaten, hunted, or kept.">Faunal assemblages</span>, steatite cooking vessels, <span data-hint="Stone bowls used with a hand-held pestle to grind acorns and seeds into meal. A foundational food-processing technology in Native California, predating Spanish contact by thousands of years.">mortars</span>, and refuse deposits from <span data-hint="The period following European arrival in a region. In California, refers to the era after 1769 when Spanish missions were established.">post-contact</span> <span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span> sites in the Santa Barbara region show that traditional subsistence practices and feasting rites continued after European arrival. Gamble cross-references this material evidence with Spanish mission records to establish the pattern. <span class="citation">(Gamble 2002:75–78)</span></span>
         </div>
         <div class="evidence-row">
           <span class="evidence-number">2</span>
-          <span>Chumash leaders <span class="highlight">deliberately maintained traditional feasting ceremonies</span> as a mechanism for preserving social identity and political authority — feasting was not just about food but served crucial functions in sustaining community leadership and social networks. <span class="citation">(Gamble 2002:80–88)</span></span>
+          <span><span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span> leaders <span class="highlight">deliberately maintained traditional feasting ceremonies</span> as a mechanism for preserving social identity and political authority — feasting was not just about food but served crucial functions in sustaining community leadership and social networks. <span class="citation">(Gamble 2002:80–88)</span></span>
         </div>
         <div class="fact-box">
           <div class="fact-box-title" style="color:#ffcc00;">&#9670; THE SOAPSTONE SMOKING GUN &#9670;</div>
           <div class="fact-box-text" style="color:#ffeeaa;">
-            <span class="highlight">Steatite (soapstone) cooking vessels</span> — a distinctly Chumash technology — continue to appear in post-contact archaeological deposits. They didn't just keep eating their food. They kept cooking it <span class="highlight">the same way</span>. <span class="citation">(Gamble 2002:82)</span>
+            <span class="highlight"><span data-hint="A soft, heat-resistant soapstone quarried and shaped into cooking vessels. Its continued presence in colonial-era archaeological deposits demonstrates technological and cultural continuity across the contact period.">Steatite</span> (soapstone) cooking vessels</span> — a distinctly <span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span> technology — continue to appear in <span data-hint="The period following European arrival in a region. In California, refers to the era after 1769 when Spanish missions were established.">post-contact</span> archaeological deposits. They didn't just keep eating their food. They kept cooking it <span class="highlight">the same way</span>. <span class="citation">(Gamble 2002:82)</span>
           </div>
         </div>
       </div>
@@ -775,12 +848,12 @@
         <div class="fact-box">
           <div class="fact-box-title">&#9889; ZOOARCHAEOLOGY BLOWS THE LID OFF &#9889;</div>
           <div class="fact-box-text">
-            Faunal assemblages from five Spanish mission sites in northern California — associated with Ohlone (Costanoan) populations — show wild game and fish species that do <span class="highlight">NOT APPEAR</span> in the missions' formal ration records. Neophytes were supplementing their diet with traditional foods entirely on their own initiative. <span class="citation">(Arkush 2011:74–76)</span>
+            <span data-hint="Collections of animal bones and other remains recovered from an archaeological site — the physical record of what animals were eaten, hunted, or kept.">Faunal assemblages</span> from five Spanish mission sites in northern California — associated with <span data-hint="Indigenous peoples of the San Francisco Bay and Monterey Bay regions of California. Costanoan was the name applied by Spanish colonizers; Ohlone is the name preferred by descendants today.">Ohlone</span> (Costanoan) populations — show wild game and fish species that do <span class="highlight">NOT APPEAR</span> in the missions' formal <span data-hint="Written logs kept by Spanish missionaries documenting food officially distributed to mission residents. Wild species found archaeologically do not appear in them — exposing the gap between the colonial record and lived reality.">ration records</span>. <span data-hint="A Native Californian baptized into the Spanish mission system. Under colonial law, neophytes were legally bound to the mission, subject to forced labor, and forbidden from leaving without permission.">Neophytes</span> were supplementing their diet with traditional foods entirely on their own initiative. <span class="citation">(Arkush 2011:74–76)</span>
           </div>
         </div>
         <div class="evidence-row">
           <span class="evidence-number">3</span>
-          <span>Despite the rigid controls of mission life, Ohlone neophytes continued to fish, gather shellfish, hunt game, and collect wild plant foods alongside formal mission rations. Arkush synthesizes faunal data with baptism registers, ration logs, and administrative correspondence to establish this pattern. <span class="citation">(Arkush 2011:64–68)</span></span>
+          <span>Despite the rigid controls of mission life, <span data-hint="Indigenous peoples of the San Francisco Bay and Monterey Bay regions of California. Costanoan was the name applied by Spanish colonizers; Ohlone is the name preferred by descendants today.">Ohlone</span> neophytes continued to fish, gather shellfish, hunt game, and collect wild plant foods alongside formal mission rations. Arkush synthesizes faunal data with baptism registers, <span data-hint="Written logs kept by Spanish missionaries documenting food officially distributed to mission residents. Wild species found archaeologically do not appear in them — exposing the gap between the colonial record and lived reality.">ration logs</span>, and administrative correspondence to establish this pattern. <span class="citation">(Arkush 2011:64–68)</span></span>
         </div>
         <div class="evidence-row">
           <span class="evidence-number">4</span>
@@ -810,7 +883,7 @@
         </div>
         <div class="evidence-row">
           <span class="evidence-number">5</span>
-          <span>Macrobotanical remains (charred seeds and plant fragments) and microbotanical evidence (phytoliths and starch grains) from mission-period sites in coastal Southern California demonstrate that wild seeds, acorns, and other gathered species continued to be processed and consumed during the Mission Period. <span class="citation">(Panich, Cuthrell &amp; Schneider 2014:898–901)</span></span>
+          <span><span data-hint="Larger plant fragments — charred seeds, nutshells, wood — visible to the naked eye and recoverable through excavation. Distinguished from microscopic botanical evidence.">Macrobotanical remains</span> (charred seeds and plant fragments) and microbotanical evidence (<span data-hint="Microscopic silica structures formed inside plant cells that survive in soil long after the plant decays. Used to identify what plant species people were processing at a site.">phytoliths</span> and starch grains) from mission-period sites in coastal Southern California demonstrate that wild seeds, acorns, and other gathered species continued to be processed and consumed during the <span data-hint="The era of Spanish Franciscan mission dominance in California, roughly 1769 to 1833, during which Indigenous peoples were incorporated into the colonial agricultural and religious system.">Mission Period</span>. <span class="citation">(Panich, Cuthrell &amp; Schneider 2014:898–901)</span></span>
         </div>
         <div class="evidence-row">
           <span class="evidence-number">6</span>
@@ -831,7 +904,7 @@
         <div class="fact-box">
           <div class="fact-box-title" style="color:#ff9900;">&#9660; INDIGENOUS HINTERLANDS: CLASSIFIED &#9660;</div>
           <div class="fact-box-text" style="color:#ffddaa;">
-            Landscape archaeology combining regional survey with targeted excavation of hinterland sites — areas geographically removed from Spanish missions — reveals <span class="highlight">strong continuity with pre-contact subsistence practices</span>, particularly intensive fishing. Fish bone assemblages at these sites closely match pre-contact patterns in species diversity and processing methods. <span class="citation">(Schneider 2015:697–702, 706–707)</span>
+            <span data-hint="A research method examining how people used and moved through the broader environment to understand settlement patterns, territorial use, and social geography — not just individual excavation sites.">Landscape archaeology</span> combining regional survey with targeted excavation of hinterland sites — areas geographically removed from Spanish missions — reveals <span class="highlight">strong continuity with <span data-hint="The period before European arrival in a region. In California, refers to Indigenous lifeways that existed prior to Spanish colonization beginning in 1769.">pre-contact</span> subsistence practices</span>, particularly intensive fishing. Fish bone assemblages at these sites closely match <span data-hint="The period before European arrival in a region. In California, refers to Indigenous lifeways that existed prior to Spanish colonization beginning in 1769.">pre-contact</span> patterns in species diversity and processing methods. <span class="citation">(Schneider 2015:697–702, 706–707)</span>
           </div>
         </div>
         <div class="evidence-row">
@@ -871,9 +944,9 @@
     <div class="sidebar-box">
       <div class="sidebar-title">QUICK FACTS</div>
       <div class="sidebar-text" style="font-size:10px; line-height:1.8;">
-        <div>&#9658; Chumash: <span style="color:#ffff00;">S. California coast</span></div>
-        <div>&#9658; Ohlone: <span style="color:#ffff00;">N. California missions</span></div>
-        <div>&#9658; Steatite vessels = <span style="color:#ffff00;">cooking tech</span></div>
+        <div>&#9658; <span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span>: <span style="color:#ffff00;">S. California coast</span></div>
+        <div>&#9658; <span data-hint="Indigenous peoples of the San Francisco Bay and Monterey Bay regions of California. Costanoan was the name applied by Spanish colonizers; Ohlone is the name preferred by descendants today.">Ohlone</span>: <span style="color:#ffff00;">N. California missions</span></div>
+        <div>&#9658; <span data-hint="A soft, heat-resistant soapstone quarried and shaped into cooking vessels. Its continued presence in colonial-era archaeological deposits demonstrates technological and cultural continuity across the contact period.">Steatite</span> vessels = <span style="color:#ffff00;">cooking tech</span></div>
         <div>&#9658; Starch grains on <span style="color:#ffff00;">grinding stones</span></div>
         <div>&#9658; Hinterlands = <span style="color:#ffff00;">refuge zones</span></div>
         <div>&#9658; Missions est. <span style="color:#ffff00;">1769 onward</span></div>
@@ -907,76 +980,276 @@
 </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ PAGE: FORBIDDEN ACORNS -->
-<div id="page-acorns" class="page-section">
+<!-- ═══════════════════════════════════════════════════════ PAGE: GAMBLE 2002 — FEASTS OF DEFIANCE -->
+<div id="page-gamble" class="page-section">
 <div class="main-content">
   <div class="left-col">
 
     <div class="section-box pulse-border">
       <div class="section-header">
         <span class="blink" style="color:#ff6600;">&#9670;</span>
-        FORBIDDEN ACORNS: THE BOTANICAL COVER-UP
+        FEASTS OF DEFIANCE: THE CHUMASH PLAYED THE LONG GAME
       </div>
       <div class="body-text">
-        <p>
-          The missions promoted European crops. Wheat. Corn. Cattle. The colonial project required replacing Indigenous food systems with European ones. But the <span class="highlight">SEEDS REMEMBER</span>. And the grinding stones never forgot.
-        </p>
-        <p>
-          Paleoethnobotanical analysis — starch grains, phytoliths, charred macrobotanical remains — has exposed what the colonial ration records tried to hide.
-        </p>
+        <p>The Spanish built missions to replace <span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span> culture. The <span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span> responded by throwing elaborate dinner parties. This is not a metaphor. This is the archaeological record.</p>
+        <p>Material evidence from <span data-hint="The period following European arrival in a region. In California, refers to the era after 1769 when Spanish missions were established.">post-contact</span> sites in Santa Barbara shows traditional subsistence and feasting rites continuing after European arrival. The feast was not nostalgia. It was <span class="highlight">infrastructure</span>.</p>
+      </div>
+    </div>
+
+    <div class="dossier-box" style="border-color:#ffcc00;">
+      <div class="dossier-label" style="color:#ffcc00;">&#9670; CLASSIFIED DOSSIER</div>
+      <div class="dossier-title">GAMBLE, LYNN H. (2002)<br>"Subsistence practices and feasting rites: Chumash identity after European colonization"</div>
+      <div class="dossier-meta">Historical Archaeology 36(3):74–93</div>
+    </div>
+
+    <div class="section-box">
+      <div class="section-header">
+        <span style="color:#ffcc00;">&#9733;</span>
+        THE FEAST IS THE WEAPON
+      </div>
+      <div class="body-text">
+        <div class="fact-box">
+          <div class="fact-box-title" style="color:#ffcc00;">&#9670; SHOCKING REVELATION &#9670;</div>
+          <div class="fact-box-text">
+            <span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span> leaders deliberately maintained feasting ceremonies as a <span class="highlight">political strategy</span> — preserving social authority and community networks while under colonial observation. The feast was not nostalgia. It was infrastructure. <span class="citation">(Gamble 2002:80–88)</span>
+          </div>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">1</span>
+          <span><span data-hint="Collections of animal bones and other remains recovered from an archaeological site — the physical record of what animals were eaten, hunted, or kept.">Faunal assemblages</span>, <span data-hint="A soft, heat-resistant soapstone quarried and shaped into cooking vessels. Its continued presence in colonial-era archaeological deposits demonstrates technological and cultural continuity across the contact period.">steatite</span> cooking vessels, <span data-hint="Stone bowls used with a hand-held pestle to grind acorns and seeds into meal. A foundational food-processing technology in Native California, predating Spanish contact by thousands of years.">mortars</span>, and refuse deposits from <span data-hint="The period following European arrival in a region. In California, refers to the era after 1769 when Spanish missions were established.">post-contact</span> <span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span> sites in the Santa Barbara region show traditional subsistence and feasting rites continuing after European arrival. Gamble cross-references material evidence with Spanish mission records. <span class="citation">(Gamble 2002:75–78)</span></span>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">2</span>
+          <span><span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span> leaders <span class="highlight">deliberately maintained traditional feasting ceremonies</span> as a mechanism for preserving social identity and political authority. <span class="citation">(Gamble 2002:80–88)</span></span>
+        </div>
       </div>
     </div>
 
     <div class="section-box">
       <div class="section-header">
-        <span class="blink" style="color:#00ffff;">&#10023;</span>
-        EVIDENCE FILE #3: THE GRINDING STONE REVELATION
+        <span style="color:#ffcc00;">&#9670;</span>
+        THE SOAPSTONE SMOKING GUN
       </div>
       <div class="body-text">
-        <p class="body-text">
-          CLASSIFIED PALEOETHNOBOTANICAL DATA: Starch grain analysis on grinding stones from mission-period contexts has revealed a truth the colonial record tried to bury.
-        </p>
         <div class="fact-box">
-          <div class="fact-box-title">&#9830; WHAT THE SEEDS REVEAL &#9830;</div>
-          <div class="fact-box-text">
-            Starch grain residues on grinding stones in mission-period deposits <span class="highlight">matched native wild plant species</span> — not the European crops the mission system promoted. People were still preparing traditional foods using traditional tools under mission supervision. <span class="citation">(Panich, Cuthrell &amp; Schneider 2014:902)</span>
+          <div class="fact-box-title" style="color:#ffcc00;">&#9670; THE SOAPSTONE SMOKING GUN &#9670;</div>
+          <div class="fact-box-text" style="color:#ffeeaa;">
+            <span data-hint="A soft, heat-resistant soapstone quarried and shaped into cooking vessels. Its continued presence in colonial-era archaeological deposits demonstrates technological and cultural continuity across the contact period.">Steatite</span> (soapstone) cooking vessels — a distinctly <span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span> technology — continue to appear in <span data-hint="The period following European arrival in a region. In California, refers to the era after 1769 when Spanish missions were established.">post-contact</span> deposits. They didn't just keep eating traditional food. They kept cooking it <span class="highlight">the same way</span>. <span class="citation">(Gamble 2002:82)</span>
           </div>
         </div>
         <div class="evidence-row">
-          <span class="evidence-number">5</span>
-          <span>Macrobotanical remains (charred seeds and plant fragments) and microbotanical evidence (phytoliths and starch grains) from mission-period sites in coastal Southern California demonstrate that wild seeds, acorns, and other gathered species continued to be processed and consumed during the Mission Period. <span class="citation">(Panich, Cuthrell &amp; Schneider 2014:898–901)</span></span>
-        </div>
-        <div class="evidence-row">
-          <span class="evidence-number">6</span>
-          <span>The title of the article says it all: "Feeding Family and Ancestors." Maintaining traditional foodways was not just practical survival — it was an act of <span class="highlight">cultural and spiritual continuity</span> tied to ancestral identity. <span class="citation">(Panich, Cuthrell &amp; Schneider 2014:901–904)</span></span>
+          <span class="evidence-number">3</span>
+          <span>Material evidence — vessels, bones, ash deposits — tells us what Spanish administrative records deliberately omit: the <span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span> did not abandon their foodways. They <span class="highlight">institutionalized them</span>. <span class="citation">(Gamble 2002:82–88)</span></span>
         </div>
       </div>
-    </div>
-
-    <div class="section-box">
-      <div class="section-header">&#9654; FROM THE SITE SCRIPT</div>
-      <div class="script-text" style="font-family:'Courier New',monospace; font-size:11px; color:#ddaaff; line-height:1.8; white-space:pre-wrap;"><span class="script-label">SECTION 3 — BOTANICAL EVIDENCE (Panich, Cuthrell &amp; Schneider 2014):</span>
-Starch grain residues recovered from grinding stones in mission-period contexts matched
-native wild plant species — not the European crops the mission system promoted.
-Macrobotanical and phytolith evidence from coastal Southern California sites confirms
-that acorns and wild seeds continued to be processed and consumed during the Mission
-Period, framing food preparation as an act of cultural and spiritual continuity tied to
-ancestral identity <span class="script-cite">(Panich, Cuthrell &amp; Schneider 2014:898–904)</span>.</div>
     </div>
 
   </div>
 
   <div class="right-col">
-    <div class="sidebar-box" style="border-color:#ff9900;">
-      <div class="sidebar-title" style="color:#ff9900; border-color:#ff9900;">&#9670; ACORN FACTS</div>
-      <div class="sidebar-text" style="font-size:10px; line-height:1.8; color:#ffddaa;">
-        <div>&#9658; Acorns = staple food</div>
-        <div>&#9658; Required leaching<br>&nbsp;&nbsp;&nbsp;(removes tannins)</div>
-        <div>&#9658; Ground on <span style="color:#ffff00;">manos &amp; metates</span></div>
-        <div>&#9658; Starch grains<br>&nbsp;&nbsp;&nbsp;survive in soil</div>
-        <div>&#9658; Found IN mission<br>&nbsp;&nbsp;&nbsp;compounds</div>
-        <div>&#9658; Missions promoted<br>&nbsp;&nbsp;&nbsp;<span style="color:#ff6666;">wheat &amp; corn</span></div>
-        <div>&#9658; <span style="color:#ffff00;">ACORNS WON</span></div>
+    <div class="sidebar-box" style="border-color:#ffcc00;">
+      <div class="sidebar-title" style="color:#ffcc00; border-color:#ffcc00;">&#9670; QUICK FACTS</div>
+      <div class="sidebar-text" style="font-size:10px; line-height:1.8; color:#ffeeaa;">
+        <div>&#9658; <span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span> = S. California coast</div>
+        <div>&#9658; Feasting = <span style="color:#ffff00;">political tool</span></div>
+        <div>&#9658; <span data-hint="A soft, heat-resistant soapstone quarried and shaped into cooking vessels. Its continued presence in colonial-era archaeological deposits demonstrates technological and cultural continuity across the contact period.">Steatite</span> = soapstone</div>
+        <div>&#9658; Post-contact deposits<br>&nbsp;&nbsp;&nbsp;<span style="color:#00ff00;">= still there</span></div>
+        <div>&#9658; Mission records =<br>&nbsp;&nbsp;&nbsp;<span style="color:#ff6666;">incomplete</span></div>
+        <div>&#9658; Gamble's method =<br>&nbsp;&nbsp;&nbsp;material + documentary</div>
+      </div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-title">SOURCE</div>
+      <div class="sidebar-text" style="font-size:9px; line-height:1.7; color:#99bbff;">
+        <div>Gamble 2002<br><em>Historical Archaeology</em><br>36(3):74–93</div>
+      </div>
+    </div>
+    <div class="sidebar-box" style="border-color:#ff6600;">
+      <div class="sidebar-title" style="color:#ff6600; border-color:#ff6600;">WEBMASTER SAYS</div>
+      <div class="sidebar-text" style="font-size:10px; font-style:italic; color:#ffcc99;">
+        "I made this site because someone told me the old ways were gone. The archaeology says otherwise. Sign my guestbook."
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:4px;">
+      <img src="assets/wave.gif" alt="" style="width:100%; image-rendering:pixelated;">
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE: ARKUSH 2011 — THE BONE DOSSIER -->
+<div id="page-arkush" class="page-section">
+<div class="main-content">
+  <div class="left-col">
+
+    <div class="section-box pulse-border">
+      <div class="section-header">
+        <span class="blink" style="color:#ff4444;">&#9670;</span>
+        THE BONE DOSSIER: FIVE MISSIONS. ZERO ANSWERS. ALL BONES.
+      </div>
+      <div class="body-text">
+        <p>The Spanish kept meticulous <span data-hint="Written logs kept by Spanish missionaries documenting food officially distributed to mission residents. Wild species found archaeologically do not appear in them — exposing the gap between the colonial record and lived reality.">ration records</span>. Every portion of beef and wheat was logged. What they forgot to log: the fish. The game. The shellfish. The bones that <span class="highlight">didn't belong</span>.</p>
+        <p>Five mission sites. Five <span data-hint="Collections of animal bones and other remains recovered from an archaeological site — the physical record of what animals were eaten, hunted, or kept.">faunal assemblages</span>. All five incriminating.</p>
+      </div>
+    </div>
+
+    <div class="dossier-box" style="border-color:#ff4444;">
+      <div class="dossier-label" style="color:#ff4444;">&#9670; CLASSIFIED DOSSIER</div>
+      <div class="dossier-title">ARKUSH, BROOKE S. (2011)<br>"Native responses to European intrusion: cultural persistence and agency among mission neophytes in Spanish colonial northern California"</div>
+      <div class="dossier-meta">Historical Archaeology 45(4):62–90</div>
+    </div>
+
+    <div class="section-box">
+      <div class="section-header">
+        <span style="color:#ff4444;">&#9889;</span>
+        FIVE MISSION SITES INVESTIGATED. ALL FIVE INCRIMINATING.
+      </div>
+      <div class="body-text">
+        <div class="fact-box">
+          <div class="fact-box-title" style="color:#ff4444;">&#9889; ZOOARCHAEOLOGY BLOWS THE LID OFF &#9889;</div>
+          <div class="fact-box-text">
+            <span data-hint="The study of animal remains from archaeological sites to reconstruct past human diet, hunting practices, and the relationship between people and animals.">Zooarchaeological</span> analysis of <span data-hint="Collections of animal bones and other remains recovered from an archaeological site — the physical record of what animals were eaten, hunted, or kept.">faunal assemblages</span> from five northern California mission sites associated with <span data-hint="Indigenous peoples of the San Francisco Bay and Monterey Bay regions of California. Costanoan was the name applied by Spanish colonizers; Ohlone is the name preferred by descendants today.">Ohlone</span> communities reveals wild game and fish species that do <span class="highlight">NOT appear</span> in the missions' formal <span data-hint="Written logs kept by Spanish missionaries documenting food officially distributed to mission residents. Wild species found archaeologically do not appear in them — exposing the gap between the colonial record and lived reality.">ration records</span>. Someone was eating off the books. <span class="citation">(Arkush 2011:74–76)</span>
+          </div>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">1</span>
+          <span>Arkush synthesizes faunal data with baptism registers, <span data-hint="Written logs kept by Spanish missionaries documenting food officially distributed to mission residents. Wild species found archaeologically do not appear in them — exposing the gap between the colonial record and lived reality.">ration logs</span>, and administrative correspondence to establish the pattern. The gap between what was officially recorded and what was actually eaten <span class="highlight">is the evidence</span>. <span class="citation">(Arkush 2011:64–68)</span></span>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">2</span>
+          <span><span data-hint="Indigenous peoples of the San Francisco Bay and Monterey Bay regions of California. Costanoan was the name applied by Spanish colonizers; Ohlone is the name preferred by descendants today.">Ohlone</span> <span data-hint="A Native Californian baptized into the Spanish mission system. Under colonial law, neophytes were legally bound to the mission, subject to forced labor, and forbidden from leaving without permission.">neophytes</span> continued to fish, gather shellfish, hunt game, and collect wild plant foods alongside formal mission rations — entirely on their own initiative. <span class="citation">(Arkush 2011:64–68)</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-box">
+      <div class="section-header">
+        <span style="color:#ff4444;">&#9670;</span>
+        THIS IS NOT ASSIMILATION
+      </div>
+      <div class="body-text">
+        <div class="fact-box">
+          <div class="fact-box-title" style="color:#ff4444;">&#9670; CLASSIFIED CONCLUSION &#9670;</div>
+          <div class="fact-box-text" style="color:#ffcccc;">
+            The material record shows Indigenous people <span class="highlight">actively navigating colonial constraints</span> rather than submitting to them. Quiet, everyday resistance through the act of eating. <span class="citation">(Arkush 2011:72–85)</span>
+          </div>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">3</span>
+          <span>The bones represent <span data-hint="The capacity of people to make meaningful, intentional choices within or against the constraints imposed on them. Used here to reject narratives of passive Indigenous victimhood.">cultural agency</span> — the ongoing exercise of traditional knowledge, seasonal practice, and food sovereignty under the most controlled colonial conditions imaginable. <span class="citation">(Arkush 2011:72–85)</span></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="right-col">
+    <div class="sidebar-box" style="border-color:#ff4444;">
+      <div class="sidebar-title" style="color:#ff4444; border-color:#ff4444;">&#9670; QUICK FACTS</div>
+      <div class="sidebar-text" style="font-size:10px; line-height:1.8; color:#ffcccc;">
+        <div>&#9658; 5 mission sites</div>
+        <div>&#9658; Northern California</div>
+        <div>&#9658; <span data-hint="Indigenous peoples of the San Francisco Bay and Monterey Bay regions of California. Costanoan was the name applied by Spanish colonizers; Ohlone is the name preferred by descendants today.">Ohlone</span> (Costanoan)</div>
+        <div>&#9658; Faunal assemblages<br>&nbsp;&nbsp;&nbsp;<span style="color:#ffff00;">= evidence</span></div>
+        <div>&#9658; Ration logs =<br>&nbsp;&nbsp;&nbsp;<span style="color:#ff6666;">incomplete</span></div>
+        <div>&#9658; Wild game &amp; fish<br>&nbsp;&nbsp;&nbsp;<span style="color:#00ff00;">= off the books</span></div>
+      </div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-title">SOURCE</div>
+      <div class="sidebar-text" style="font-size:9px; line-height:1.7; color:#99bbff;">
+        <div>Arkush 2011<br><em>Historical Archaeology</em><br>45(4):62–90</div>
+      </div>
+    </div>
+    <div class="sidebar-box" style="border-color:#ff6600;">
+      <div class="sidebar-title" style="color:#ff6600; border-color:#ff6600;">WEBMASTER SAYS</div>
+      <div class="sidebar-text" style="font-size:10px; font-style:italic; color:#ffcc99;">
+        "I made this site because someone told me the old ways were gone. The archaeology says otherwise. Sign my guestbook."
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:4px;">
+      <img src="assets/wave.gif" alt="" style="width:100%; image-rendering:pixelated;">
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE: PANICH ET AL. 2014 — SEEDS OF RESISTANCE -->
+<div id="page-panich" class="page-section">
+<div class="main-content">
+  <div class="left-col">
+
+    <div class="section-box pulse-border">
+      <div class="section-header">
+        <span class="blink" style="color:#00cc44;">&#9670;</span>
+        SEEDS OF RESISTANCE: THE GRINDING STONES REMEMBER EVERYTHING
+      </div>
+      <div class="body-text">
+        <p>The missions promoted wheat. Corn. Cattle. European agriculture was not optional. Except, apparently, it was — because the starch grains on the grinding stones tell a <span class="highlight">completely different story</span>.</p>
+        <p>You need a microscope to see the evidence. The evidence is <span class="highlight">overwhelming</span>.</p>
+      </div>
+    </div>
+
+    <div class="dossier-box" style="border-color:#00cc44;">
+      <div class="dossier-label" style="color:#00cc44;">&#9670; CLASSIFIED DOSSIER</div>
+      <div class="dossier-title">PANICH, LEE M., ROB Q. CUTHRELL &amp; TSIM D. SCHNEIDER (2014)<br>"Feeding family and ancestors: persistence of traditional Native American lifeways during the Mission Period in coastal Southern California"</div>
+      <div class="dossier-meta">Journal of Archaeological Science 41:897–906</div>
+    </div>
+
+    <div class="section-box">
+      <div class="section-header">
+        <span style="color:#00cc44;">&#9830;</span>
+        WHAT THE STONES REMEMBER
+      </div>
+      <div class="body-text">
+        <div class="fact-box">
+          <div class="fact-box-title" style="color:#00cc44;">&#9830; WHAT THE SEEDS REVEAL &#9830;</div>
+          <div class="fact-box-text">
+            Starch grain residues on grinding stones in mission-period deposits <span class="highlight">matched native wild plant species</span> — not the European crops the mission system promoted. The technology of resistance is invisible to the naked eye. You need a microscope. <span class="citation">(Panich, Cuthrell &amp; Schneider 2014:902)</span>
+          </div>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">1</span>
+          <span><span data-hint="Larger plant fragments — charred seeds, nutshells, wood — visible to the naked eye and recoverable through excavation. Distinguished from microscopic botanical evidence.">Macrobotanical remains</span> (charred seeds and plant fragments) and microbotanical evidence (<span data-hint="Microscopic silica structures formed inside plant cells that survive in soil long after the plant decays. Used to identify what plant species people were processing at a site.">phytoliths</span> and starch grains) from mission-period sites in coastal Southern California demonstrate that wild seeds, acorns, and gathered species continued to be processed and consumed during the <span data-hint="The era of Spanish Franciscan mission dominance in California, roughly 1769 to 1833, during which Indigenous peoples were incorporated into the colonial agricultural and religious system.">Mission Period</span>. <span class="citation">(Panich, Cuthrell &amp; Schneider 2014:898–901)</span></span>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">2</span>
+          <span>The article title is "Feeding Family and Ancestors." Maintaining traditional foodways was not just practical survival — it was an act of <span class="highlight">cultural and spiritual continuity</span> tied to ancestral identity. <span class="citation">(Panich, Cuthrell &amp; Schneider 2014:901–904)</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-box">
+      <div class="section-header">
+        <span style="color:#00cc44;">&#9670;</span>
+        THREE RESEARCHERS. ONE CONCLUSION. ACORNS WIN.
+      </div>
+      <div class="body-text">
+        <div class="fact-box">
+          <div class="fact-box-title" style="color:#00cc44;">&#9670; THREE LINES OF EVIDENCE &#9670;</div>
+          <div class="fact-box-text" style="color:#aaffcc;">
+            Starch grains. <span data-hint="Microscopic silica structures formed inside plant cells that survive in soil long after the plant decays. Used to identify what plant species people were processing at a site.">Phytoliths</span>. Charred <span data-hint="Larger plant fragments — charred seeds, nutshells, wood — visible to the naked eye and recoverable through excavation. Distinguished from microscopic botanical evidence.">macrobotanical remains</span>. All three lines of botanical evidence point the same direction. Indigenous food practices were not replaced. They were maintained — in the compounds, on the very grinding stones the missions <span class="highlight">couldn't confiscate</span>. <span class="citation">(Panich, Cuthrell &amp; Schneider 2014:897–906)</span>
+          </div>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">3</span>
+          <span>Three independent lines of microscopic and macroscopic evidence all converge on the same finding. The missions controlled food distribution. They did not control what people knew how to find, prepare, and eat. <span class="citation">(Panich, Cuthrell &amp; Schneider 2014:902–906)</span></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="right-col">
+    <div class="sidebar-box" style="border-color:#00cc44;">
+      <div class="sidebar-title" style="color:#00cc44; border-color:#00cc44;">&#9670; QUICK FACTS</div>
+      <div class="sidebar-text" style="font-size:10px; line-height:1.8; color:#aaffcc;">
+        <div>&#9658; Coastal Southern California</div>
+        <div>&#9658; Mission-period sites</div>
+        <div>&#9658; Starch grains<br>&nbsp;&nbsp;&nbsp;<span style="color:#ffff00;">survive millennia</span></div>
+        <div>&#9658; <span data-hint="Microscopic silica structures formed inside plant cells that survive in soil long after the plant decays. Used to identify what plant species people were processing at a site.">Phytoliths</span> = plant cell ghosts</div>
+        <div>&#9658; Acorns = <span style="color:#ffff00;">staple food</span></div>
+        <div>&#9658; Three authors,<br>&nbsp;&nbsp;&nbsp;<span style="color:#00ff00;">one damning study</span></div>
       </div>
     </div>
     <div class="sidebar-box">
@@ -998,153 +1271,88 @@ ancestral identity <span class="script-cite">(Panich, Cuthrell &amp; Schneider 2
 </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ PAGE: SHELLFISH CONSPIRACY -->
-<div id="page-shellfish" class="page-section">
+<!-- ═══════════════════════════════════════════════════════ PAGE: SCHNEIDER 2015 — REFUGE ZONES: CLASSIFIED -->
+<div id="page-schneider" class="page-section">
 <div class="main-content">
   <div class="left-col">
 
     <div class="section-box pulse-border">
       <div class="section-header">
-        <span class="blink" style="color:#00ffff;">&#9670;</span>
-        THE SHELLFISH CONSPIRACY: FISH BONES DON'T LIE
+        <span class="blink" style="color:#cc44ff;">&#9670;</span>
+        REFUGE ZONES: CLASSIFIED — THE HINTERLAND ESCAPE NETWORK
       </div>
       <div class="body-text">
-        <p>
-          The missions kept ration records. They recorded wheat, beef, corn. What they did NOT record — what they <span class="highlight">COULD NOT EXPLAIN</span> — was the fish. The shellfish. The wild game. The bones in the soil that weren't supposed to be there.
-        </p>
-        <p>
-          The zooarchaeological record has blown the official colonial narrative wide open.
-        </p>
+        <p>Not everyone went to the missions. Some people fled. Some never went. And the zones they retreated to — the hinterlands — hold some of the <span class="highlight">most powerful evidence in the entire record</span>.</p>
+        <p>The Spanish built missions. They did not build an impenetrable system. The hinterlands are proof.</p>
+      </div>
+    </div>
+
+    <div class="dossier-box" style="border-color:#cc44ff;">
+      <div class="dossier-label" style="color:#cc44ff;">&#9670; CLASSIFIED DOSSIER</div>
+      <div class="dossier-title">SCHNEIDER, TSIM D. (2015)<br>"Placing refuge and the archaeology of Indigenous hinterlands in colonial California"</div>
+      <div class="dossier-meta">American Antiquity 80(4):695–713</div>
+    </div>
+
+    <div class="section-box">
+      <div class="section-header">
+        <span style="color:#cc44ff;">&#9660;</span>
+        BEYOND COLONIAL REACH: A MAP THEY NEVER MADE
+      </div>
+      <div class="body-text">
+        <div class="fact-box">
+          <div class="fact-box-title" style="color:#cc44ff;">&#9660; INDIGENOUS HINTERLANDS: CLASSIFIED &#9660;</div>
+          <div class="fact-box-text" style="color:#ddaaff;">
+            <span data-hint="A research method examining how people used and moved through the broader environment to understand settlement patterns, territorial use, and social geography — not just individual excavation sites.">Landscape archaeology</span> combining regional survey with targeted excavation of hinterland sites — areas geographically removed from Spanish missions — reveals <span class="highlight">strong continuity with <span data-hint="The period before European arrival in a region. In California, refers to Indigenous lifeways that existed prior to Spanish colonization beginning in 1769.">pre-contact</span> subsistence practices</span>, particularly intensive fishing. The escape routes were real. <span class="citation">(Schneider 2015:697–702, 706–707)</span>
+          </div>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">1</span>
+          <span>Fish bone assemblages at hinterland sites closely match <span data-hint="The period before European arrival in a region. In California, refers to Indigenous lifeways that existed prior to Spanish colonization beginning in 1769.">pre-contact</span> patterns in species diversity and processing methods. Communities who avoided the missions preserved traditional fishing knowledge and technologies <span class="highlight">largely intact</span>. <span class="citation">(Schneider 2015:703–710)</span></span>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">2</span>
+          <span>Schneider develops the concept of <span class="highlight">"Indigenous hinterlands"</span> — spaces beyond direct colonial control where Native Californians maintained or re-established traditional lifeways. Colonial California was not a total system. It was a <span class="highlight">leaky one</span>. <span class="citation">(Schneider 2015:703–710)</span></span>
+        </div>
       </div>
     </div>
 
     <div class="section-box">
       <div class="section-header">
-        <span style="color:#ffff00;">&#9670;</span>
-        EVIDENCE FILE #2: MISSION LIFE — THE BONES DON'T LIE
+        <span style="color:#cc44ff;">&#9670;</span>
+        THE MISSIONS HAD WALLS. THE HINTERLANDS HAD FISH.
       </div>
       <div class="body-text">
-        <p class="body-text">
-          Here is what THEY don't teach you in school. Even inside the mission system — under direct colonial surveillance — Native Californians kept hunting, fishing, and gathering their own food.
-        </p>
         <div class="fact-box">
-          <div class="fact-box-title">&#9889; ZOOARCHAEOLOGY BLOWS THE LID OFF &#9889;</div>
-          <div class="fact-box-text">
-            Faunal assemblages from five Spanish mission sites in northern California — associated with Ohlone (Costanoan) populations — show wild game and fish species that do <span class="highlight">NOT APPEAR</span> in the missions' formal ration records. Neophytes were supplementing their diet with traditional foods entirely on their own initiative. <span class="citation">(Arkush 2011:74–76)</span>
+          <div class="fact-box-title" style="color:#cc44ff;">&#9670; THE FISH DON'T LIE &#9670;</div>
+          <div class="fact-box-text" style="color:#ddaaff;">
+            <span data-hint="The period before European arrival in a region. In California, refers to Indigenous lifeways that existed prior to Spanish colonization beginning in 1769.">Pre-contact</span> fish bone assemblages and <span data-hint="The period following European arrival in a region. In California, refers to the era after 1769 when Spanish missions were established.">post-contact</span> hinterland assemblages: <span class="highlight">nearly identical</span>. The fishing knowledge that existed before 1769 was still being practiced — in the same places, with the same methods — in communities the Spanish never reached. <span class="citation">(Schneider 2015:706–707)</span>
           </div>
         </div>
         <div class="evidence-row">
           <span class="evidence-number">3</span>
-          <span>Despite the rigid controls of mission life, Ohlone neophytes continued to fish, gather shellfish, hunt game, and collect wild plant foods alongside formal mission rations. Arkush synthesizes faunal data with baptism registers, ration logs, and administrative correspondence to establish this pattern. <span class="citation">(Arkush 2011:64–68)</span></span>
-        </div>
-        <div class="evidence-row">
-          <span class="evidence-number">4</span>
-          <span>This is not assimilation. The material record shows Indigenous people <span class="highlight">actively navigating colonial constraints</span> rather than submitting to them — quiet, everyday resistance through the act of eating. <span class="citation">(Arkush 2011:72–85)</span></span>
-        </div>
-        <div class="gif-placeholder">
-          [ SPINNING FISH BONE GIF ]<br>
-          *** THE RECORD SPEAKS ***
+          <span>Schneider's concept of "Indigenous hinterlands" reframes the colonial period entirely. Not a story of total domination — but a story of <span class="highlight">strategic geography</span>. Some people stayed. Some people left. Both strategies left evidence. <span class="citation">(Schneider 2015:695–713)</span></span>
         </div>
       </div>
-    </div>
-
-    <div class="section-box">
-      <div class="section-header">
-        <span style="color:#ff6600;">&#9650;</span>
-        EVIDENCE FILE #4: THE HINTERLAND ESCAPE NETWORK
-      </div>
-      <div class="body-text">
-        <p class="body-text">
-          NOT EVERYONE WENT TO THE MISSIONS. Some people <span class="highlight">fled</span>. Some <span class="highlight">never went</span>. And the archaeological record of what happened in those peripheral zones — the hinterlands — is one of the most powerful datasets we have.
-        </p>
-        <div class="fact-box">
-          <div class="fact-box-title" style="color:#ff9900;">&#9660; INDIGENOUS HINTERLANDS: CLASSIFIED &#9660;</div>
-          <div class="fact-box-text" style="color:#ffddaa;">
-            Landscape archaeology combining regional survey with targeted excavation of hinterland sites — areas geographically removed from Spanish missions — reveals <span class="highlight">strong continuity with pre-contact subsistence practices</span>, particularly intensive fishing. Fish bone assemblages at these sites closely match pre-contact patterns in species diversity and processing methods. <span class="citation">(Schneider 2015:697–702, 706–707)</span>
-          </div>
-        </div>
-        <div class="evidence-row">
-          <span class="evidence-number">7</span>
-          <span>Schneider develops the concept of <span class="highlight">"Indigenous hinterlands"</span> — spaces beyond direct colonial control where Native Californians maintained or re-established traditional lifeways. Communities who maintained independence from the mission system preserved traditional fishing knowledge and technologies largely intact. <span class="citation">(Schneider 2015:703–710)</span></span>
-        </div>
-        <div class="gif-placeholder">
-          [ ANIMATED FISH JUMPING GIF ]<br>
-          &#9654; RESISTANCE AT THE RIVERBANK &#9654;
-        </div>
-      </div>
-    </div>
-
-    <div class="section-box">
-      <div class="section-header">
-        <span style="color:#ff00ff;">&#9670;</span>
-        EVIDENCE FILE #5: ARCHAEOLOGISTS CONFIRM — THEY SLIPPED AWAY TO FISH
-      </div>
-      <div class="body-text">
-        <p class="body-text">
-          Award-winning science journalist Andrew Curry interviewed archaeologists actively working on California mission-period sites to bring this research to the public. What he found confirms everything on this page.
-        </p>
-        <div class="evidence-row">
-          <span class="evidence-number">8</span>
-          <span>Fish bones recovered from mission-period deposits represent species caught far from mission grounds — suggesting Indigenous people were <span class="highlight">traveling to traditional fishing sites outside mission boundaries on their own terms</span>. Someone slipping away to fish at an ancestral location is the human story underneath all of this material evidence. <span class="citation">(Curry 2022)</span></span>
-        </div>
-        <div class="evidence-row">
-          <span class="evidence-number">9</span>
-          <span>Curry frames the material evidence — fish bones, plant remains, cooking tools — as <span class="highlight">the record of everyday resistance</span>. Ordinary objects telling a story of survival and identity. <span class="citation">(Curry 2022)</span></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="section-box">
-      <div class="section-header">&#9654; FROM THE SITE SCRIPT</div>
-      <div class="script-text" style="font-family:'Courier New',monospace; font-size:11px; color:#ddaaff; line-height:1.8; white-space:pre-wrap;"><span class="script-label">SECTION 2 — MISSION LIFE AND FAUNAL RESISTANCE (Arkush 2011):</span>
-Zooarchaeological analysis of five Spanish mission sites in northern California
-associated with Ohlone communities reveals wild game and fish species not found in
-formal mission ration records. Despite the rigid controls of mission life, neophytes
-continued to hunt, fish, and gather traditional foods on their own initiative — evidence
-of cultural agency and persistence rather than assimilation
-<span class="script-cite">(Arkush 2011:64–76)</span>.
-
-<span class="script-label">SECTION 4 — INDIGENOUS HINTERLANDS (Schneider 2015):</span>
-Not everyone entered the mission system. Landscape archaeology at hinterland sites —
-areas geographically removed from Spanish colonial settlements — shows strong continuity
-with pre-contact subsistence practices, particularly intensive fishing. Fish bone
-assemblages at these sites match pre-contact patterns in species diversity and processing
-methods, suggesting that communities who maintained independence from the missions
-preserved traditional fishing knowledge largely intact. Schneider terms these spaces
-"Indigenous hinterlands" — zones of refuge and cultural persistence
-<span class="script-cite">(Schneider 2015:697–710)</span>.
-
-<span class="script-label">SECTION 5 — THE HUMAN STORY (Curry 2022):</span>
-Fish bones recovered from mission-period deposits represent species caught far from
-mission grounds — suggesting Indigenous people were traveling to traditional fishing
-sites outside mission boundaries on their own terms. Science journalist Andrew Curry,
-drawing on interviews with active researchers, frames these ordinary objects — bones,
-seeds, grinding stones — as the material record of everyday resistance
-<span class="script-cite">(Curry 2022)</span>.</div>
     </div>
 
   </div>
 
   <div class="right-col">
-    <div class="sidebar-box" style="border-color:#00ccff;">
-      <div class="sidebar-title" style="color:#00ccff; border-color:#00ccff;">&#9670; FISH FACTS</div>
-      <div class="sidebar-text" style="font-size:10px; line-height:1.8; color:#aaeeff;">
-        <div>&#9658; Ohlone: <span style="color:#ffff00;">shellfish experts</span></div>
-        <div>&#9658; Middens = <span style="color:#ffff00;">shell mounds</span></div>
-        <div>&#9658; Fish bones in<br>&nbsp;&nbsp;&nbsp;mission deposits</div>
-        <div>&#9658; NOT in ration logs</div>
-        <div>&#9658; Hinterland sites =<br>&nbsp;&nbsp;&nbsp;<span style="color:#ffff00;">pre-contact patterns</span></div>
-        <div>&#9658; They went fishing<br>&nbsp;&nbsp;&nbsp;<span style="color:#00ff00;">on their own terms</span></div>
+    <div class="sidebar-box" style="border-color:#cc44ff;">
+      <div class="sidebar-title" style="color:#cc44ff; border-color:#cc44ff;">&#9670; QUICK FACTS</div>
+      <div class="sidebar-text" style="font-size:10px; line-height:1.8; color:#ddaaff;">
+        <div>&#9658; Hinterlands =<br>&nbsp;&nbsp;&nbsp;<span style="color:#ffff00;">refuge zones</span></div>
+        <div>&#9658; Beyond mission reach</div>
+        <div>&#9658; <span data-hint="A research method examining how people used and moved through the broader environment to understand settlement patterns, territorial use, and social geography — not just individual excavation sites.">Landscape archaeology</span><br>&nbsp;&nbsp;&nbsp;method</div>
+        <div>&#9658; Fish bones =<br>&nbsp;&nbsp;&nbsp;<span style="color:#ffff00;">pre-contact match</span></div>
+        <div>&#9658; <em>American Antiquity</em><br>&nbsp;&nbsp;&nbsp;= top journal</div>
+        <div>&#9658; Schneider coins<br>&nbsp;&nbsp;&nbsp;<span style="color:#00ff00;">"Indigenous hinterlands"</span></div>
       </div>
     </div>
     <div class="sidebar-box">
-      <div class="sidebar-title">SOURCES</div>
+      <div class="sidebar-title">SOURCE</div>
       <div class="sidebar-text" style="font-size:9px; line-height:1.7; color:#99bbff;">
-        <div>Arkush 2011<br><em>Historical Archaeology</em><br>45(4):62–90</div>
-        <hr style="border-color:#003366; margin:4px 0;">
         <div>Schneider 2015<br><em>American Antiquity</em><br>80(4):695–713</div>
-        <hr style="border-color:#003366; margin:4px 0;">
-        <div>Curry 2022<br><em>Archaeology</em><br>75(3)</div>
       </div>
     </div>
     <div class="sidebar-box" style="border-color:#ff6600;">
@@ -1160,90 +1368,88 @@ seeds, grinding stones — as the material record of everyday resistance
 </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ PAGE: STEATITE SECRETS -->
-<div id="page-steatite" class="page-section">
+<!-- ═══════════════════════════════════════════════════════ PAGE: CURRY 2022 — GONE FISHING!! -->
+<div id="page-curry" class="page-section">
 <div class="main-content">
   <div class="left-col">
 
     <div class="section-box pulse-border">
       <div class="section-header">
-        <span class="blink" style="color:#ffcc00;">&#9670;</span>
-        STEATITE SECRETS: THE SOAPSTONE THAT SURVIVED COLONIZATION
+        <span class="blink" style="color:#00ccff;">&#9670;</span>
+        GONE FISHING (AGAINST ORDERS): THE CURRY DISPATCH
       </div>
       <div class="body-text">
-        <p>
-          Steatite — soapstone — is a soft, heat-resistant stone that the Chumash mastered for cooking. Steatite cooking vessels are <span class="highlight">a distinctly Chumash technology</span>. When the Spanish arrived, you might expect these vessels to disappear from the archaeological record.
-        </p>
-        <p>
-          <span class="highlight">THEY DID NOT DISAPPEAR.</span>
-        </p>
-        <p>
-          Their continued presence in post-contact deposits is one of the most direct pieces of material evidence for technological and cultural continuity in the entire record.
-        </p>
+        <p>A science journalist walked into the archaeology. He talked to the researchers. He looked at the fish bones. What he wrote cuts right to the <span class="highlight">human story underneath all the faunal data</span>.</p>
+        <p>Someone left the mission. Made the journey. Fished the way their family had always fished. Came back. The bones are the proof.</p>
+      </div>
+    </div>
+
+    <div class="dossier-box" style="border-color:#00ccff;">
+      <div class="dossier-label" style="color:#00ccff;">&#9670; CLASSIFIED DOSSIER</div>
+      <div class="dossier-title">CURRY, ANDREW (2022)<br>"California's coastal homelands: How Native Americans defied Spanish missionaries and preserved their way of life"</div>
+      <div class="dossier-meta">Archaeology 75(3), May/June 2022</div>
+    </div>
+
+    <div class="section-box">
+      <div class="section-header">
+        <span style="color:#00ccff;">&#9658;</span>
+        THE FISH THAT BROKE THE CASE OPEN
+      </div>
+      <div class="body-text">
+        <div class="fact-box">
+          <div class="fact-box-title" style="color:#00ccff;">&#9658; BREAKING: LOCAL PERSON GOES FISHING &#9658;</div>
+          <div class="fact-box-text" style="color:#aaeeff;">
+            Fish bones recovered from mission-period deposits represent species consistent with <span class="highlight">ancestral fishing locations far from mission grounds</span>. This means someone left. Made the journey. Fished the way their family had always fished. Came back. The bones are the proof. <span class="citation">(Curry 2022)</span>
+          </div>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">1</span>
+          <span>Fish bones recovered from mission-period deposits represent species consistent with ancestral fishing locations — suggesting Indigenous people were <span class="highlight">traveling to traditional fishing sites outside mission boundaries on their own terms</span>. <span class="citation">(Curry 2022)</span></span>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">2</span>
+          <span>Curry frames the material evidence — fish bones, plant remains, cooking tools — as <span class="highlight">the record of everyday resistance</span>. Ordinary objects. Extraordinary story. <span class="citation">(Curry 2022)</span></span>
+        </div>
       </div>
     </div>
 
     <div class="section-box">
       <div class="section-header">
-        <span style="color:#ff0000;">&#9888;</span>
-        EVIDENCE FILE #1: FEASTING AS RESISTANCE (THE CHUMASH)
+        <span style="color:#00ccff;">&#9670;</span>
+        THE RECORD OF EVERYDAY RESISTANCE
       </div>
       <div class="body-text">
         <div class="fact-box">
-          <div class="fact-box-title">&#9733; SHOCKING FACT &#9733;</div>
-          <div class="fact-box-text">
-            Chumash leaders didn't just keep cooking their traditional foods after colonization — they kept hosting <span class="highlight">ELABORATE FEASTS</span> as a deliberate political strategy to maintain social authority. The Spanish had no idea this was happening. Or maybe they did and couldn't stop it.
+          <div class="fact-box-title" style="color:#00ccff;">&#9670; CURRY'S CONCLUSION &#9670;</div>
+          <div class="fact-box-text" style="color:#aaeeff;">
+            Curry's article synthesizes peer-reviewed archaeological findings into a public-facing narrative. It does not soften the conclusion: the material record is a record of <span class="highlight">defiance</span>. Not dramatic, violent, visible defiance — but the quiet, persistent, daily kind. Which is <span class="highlight">harder to stop</span>. <span class="citation">(Curry 2022)</span>
           </div>
         </div>
         <div class="evidence-row">
-          <span class="evidence-number">1</span>
-          <span>Faunal assemblages, steatite cooking vessels, mortars, and refuse deposits from post-contact Chumash sites in the Santa Barbara region show that traditional subsistence practices and feasting rites continued after European arrival. Gamble cross-references this material evidence with Spanish mission records to establish the pattern. <span class="citation">(Gamble 2002:75–78)</span></span>
-        </div>
-        <div class="evidence-row">
-          <span class="evidence-number">2</span>
-          <span>Chumash leaders <span class="highlight">deliberately maintained traditional feasting ceremonies</span> as a mechanism for preserving social identity and political authority — feasting was not just about food but served crucial functions in sustaining community leadership and social networks. <span class="citation">(Gamble 2002:80–88)</span></span>
-        </div>
-        <div class="fact-box">
-          <div class="fact-box-title" style="color:#ffcc00;">&#9670; THE SOAPSTONE SMOKING GUN &#9670;</div>
-          <div class="fact-box-text" style="color:#ffeeaa;">
-            <span class="highlight">Steatite (soapstone) cooking vessels</span> — a distinctly Chumash technology — continue to appear in post-contact archaeological deposits. They didn't just keep eating their food. They kept cooking it <span class="highlight">the same way</span>. <span class="citation">(Gamble 2002:82)</span>
-          </div>
+          <span class="evidence-number">3</span>
+          <span>Someone slipping away to fish at an ancestral site is not just an outlier in a <span data-hint="Collections of animal bones and other remains recovered from an archaeological site — the physical record of what animals were eaten, hunted, or kept.">faunal assemblage</span>. It is a person exercising memory, knowledge, and sovereignty. <span class="citation">(Curry 2022)</span></span>
         </div>
       </div>
-    </div>
-
-    <div class="section-box">
-      <div class="section-header">&#9654; FROM THE SITE SCRIPT</div>
-      <div class="script-text" style="font-family:'Courier New',monospace; font-size:11px; color:#ddaaff; line-height:1.8; white-space:pre-wrap;"><span class="script-label">SECTION 1 — PRE-CONTACT FOODWAYS &amp; FEASTING (Gamble 2002):</span>
-Chumash communities in the Santa Barbara region maintained elaborate feasting
-ceremonies after Spanish colonization as a deliberate strategy to preserve social
-identity and political authority. Material evidence — steatite cooking vessels, mortars,
-faunal assemblages, and refuse deposits — shows traditional food preparation
-technologies persisting in post-contact deposits. Notably, steatite cooking vessels,
-a distinctly Chumash technology, continued to appear in colonial-era archaeological
-contexts, indicating that the Chumash maintained not just what they ate but specifically
-how they cooked it <span class="script-cite">(Gamble 2002:75–88)</span>.</div>
     </div>
 
   </div>
 
   <div class="right-col">
-    <div class="sidebar-box" style="border-color:#ffcc00;">
-      <div class="sidebar-title" style="color:#ffcc00; border-color:#ffcc00;">&#9670; STEATITE FACTS</div>
-      <div class="sidebar-text" style="font-size:10px; line-height:1.8; color:#ffeeaa;">
-        <div>&#9658; Steatite = soapstone</div>
-        <div>&#9658; Heat resistant</div>
-        <div>&#9658; <span style="color:#ffff00;">Chumash technology</span></div>
-        <div>&#9658; Santa Barbara region</div>
-        <div>&#9658; Post-contact deposits<br>&nbsp;&nbsp;&nbsp;<span style="color:#00ff00;">still have them</span></div>
-        <div>&#9658; Feasting = political<br>&nbsp;&nbsp;&nbsp;authority</div>
-        <div>&#9658; Not just WHAT they<br>&nbsp;&nbsp;&nbsp;ate — HOW they<br>&nbsp;&nbsp;&nbsp;<span style="color:#ffff00;">cooked it</span></div>
+    <div class="sidebar-box" style="border-color:#00ccff;">
+      <div class="sidebar-title" style="color:#00ccff; border-color:#00ccff;">&#9670; QUICK FACTS</div>
+      <div class="sidebar-text" style="font-size:10px; line-height:1.8; color:#aaeeff;">
+        <div>&#9658; Andrew Curry =<br>&nbsp;&nbsp;&nbsp;science journalist</div>
+        <div>&#9658; <em>Archaeology</em> mag =<br>&nbsp;&nbsp;&nbsp;public-facing</div>
+        <div>&#9658; Fish bones =<br>&nbsp;&nbsp;&nbsp;<span style="color:#ffff00;">ancestral species</span></div>
+        <div>&#9658; Someone went fishing</div>
+        <div>&#9658; They came back</div>
+        <div>&#9658; Everyday resistance =<br>&nbsp;&nbsp;&nbsp;<span style="color:#00ff00;">hardest kind to stop</span></div>
       </div>
     </div>
     <div class="sidebar-box">
       <div class="sidebar-title">SOURCE</div>
       <div class="sidebar-text" style="font-size:9px; line-height:1.7; color:#99bbff;">
-        <div>Gamble 2002<br><em>Historical Archaeology</em><br>36(3):74–93</div>
+        <div>Curry 2022<br><em>Archaeology</em><br>75(3)</div>
       </div>
     </div>
     <div class="sidebar-box" style="border-color:#ff6600;">
@@ -1395,21 +1601,21 @@ The archaeological record tells a different story — one of strategic resistanc
 adaptation, and survival.
 
 <span class="script-label">SECTION 1 — PRE-CONTACT FOODWAYS &amp; FEASTING (Gamble 2002):</span>
-Chumash communities in the Santa Barbara region maintained elaborate feasting
+<span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span> communities in the Santa Barbara region maintained elaborate feasting
 ceremonies after Spanish colonization as a deliberate strategy to preserve social
-identity and political authority. Material evidence — steatite cooking vessels, mortars,
+identity and political authority. Material evidence — steatite cooking vessels, <span data-hint="Stone bowls used with a hand-held pestle to grind acorns and seeds into meal. A foundational food-processing technology in Native California, predating Spanish contact by thousands of years.">mortars</span>,
 faunal assemblages, and refuse deposits — shows traditional food preparation
-technologies persisting in post-contact deposits. Notably, steatite cooking vessels,
-a distinctly Chumash technology, continued to appear in colonial-era archaeological
-contexts, indicating that the Chumash maintained not just what they ate but specifically
+technologies persisting in <span data-hint="The period following European arrival in a region. In California, refers to the era after 1769 when Spanish missions were established.">post-contact</span> deposits. Notably, steatite cooking vessels,
+a distinctly <span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span> technology, continued to appear in colonial-era archaeological
+contexts, indicating that the <span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span> maintained not just what they ate but specifically
 how they cooked it <span class="script-cite">(Gamble 2002:75–88)</span>.
 
 <span class="script-label">SECTION 2 — MISSION LIFE AND FAUNAL RESISTANCE (Arkush 2011):</span>
 Zooarchaeological analysis of five Spanish mission sites in northern California
-associated with Ohlone communities reveals wild game and fish species not found in
-formal mission ration records. Despite the rigid controls of mission life, neophytes
+associated with <span data-hint="Indigenous peoples of the San Francisco Bay and Monterey Bay regions of California. Costanoan was the name applied by Spanish colonizers; Ohlone is the name preferred by descendants today.">Ohlone</span> communities reveals wild game and fish species not found in
+formal mission <span data-hint="Written logs kept by Spanish missionaries documenting food officially distributed to mission residents. Wild species found archaeologically do not appear in them — exposing the gap between the colonial record and lived reality.">ration records</span>. Despite the rigid controls of mission life, neophytes
 continued to hunt, fish, and gather traditional foods on their own initiative — evidence
-of cultural agency and persistence rather than assimilation
+of <span data-hint="The capacity of people to make meaningful, intentional choices within or against the constraints imposed on them. Used here to reject narratives of passive Indigenous victimhood.">cultural agency</span> and persistence rather than assimilation
 <span class="script-cite">(Arkush 2011:64–76)</span>.
 
 <span class="script-label">SECTION 3 — BOTANICAL EVIDENCE (Panich, Cuthrell &amp; Schneider 2014):</span>
@@ -1421,10 +1627,10 @@ Period, framing food preparation as an act of cultural and spiritual continuity 
 ancestral identity <span class="script-cite">(Panich, Cuthrell &amp; Schneider 2014:898–904)</span>.
 
 <span class="script-label">SECTION 4 — INDIGENOUS HINTERLANDS (Schneider 2015):</span>
-Not everyone entered the mission system. Landscape archaeology at hinterland sites —
+Not everyone entered the mission system. <span data-hint="A research method examining how people used and moved through the broader environment to understand settlement patterns, territorial use, and social geography — not just individual excavation sites.">Landscape archaeology</span> at hinterland sites —
 areas geographically removed from Spanish colonial settlements — shows strong continuity
-with pre-contact subsistence practices, particularly intensive fishing. Fish bone
-assemblages at these sites match pre-contact patterns in species diversity and processing
+with <span data-hint="The period before European arrival in a region. In California, refers to Indigenous lifeways that existed prior to Spanish colonization beginning in 1769.">pre-contact</span> subsistence practices, particularly intensive fishing. Fish bone
+assemblages at these sites match <span data-hint="The period before European arrival in a region. In California, refers to Indigenous lifeways that existed prior to Spanish colonization beginning in 1769.">pre-contact</span> patterns in species diversity and processing
 methods, suggesting that communities who maintained independence from the missions
 preserved traditional fishing knowledge largely intact. Schneider terms these spaces
 "Indigenous hinterlands" — zones of refuge and cultural persistence
@@ -1439,18 +1645,18 @@ seeds, grinding stones — as the material record of everyday resistance
 <span class="script-cite">(Curry 2022)</span>.
 
 <span class="script-label">CONCLUSION:</span>
-The loss narrative embedded in colonial-era accounts is contradicted by zooarchaeological,
+The loss narrative embedded in colonial-era accounts is contradicted by <span data-hint="The study of animal remains from archaeological sites to reconstruct past human diet, hunting practices, and the relationship between people and animals.">zooarchaeological</span>,
 archaeobotanical, isotopic, and ethnohistoric evidence. Indigenous Californian coastal
 peoples were strategic agents who defended and maintained their foodways — inside
-missions, outside them, and in the spaces in between. The truth was in the middens
+missions, outside them, and in the spaces in between. The truth was in the <span data-hint="Ancient refuse heaps containing discarded food waste, shell, bone, and ash accumulating at inhabited sites over time. Among the richest sources of archaeological evidence about past diet.">middens</span>
 all along.</div>
 </div>
 
 <div class="sources-section">
   <div class="sources-header">&#9654; FULL WORKS CITED</div>
-  <div class="source-entry">Gamble, Lynn H.<br>2002 &nbsp;Subsistence practices and feasting rites: Chumash identity after European colonization. <em>Historical Archaeology</em> 36(3):74–93.</div>
+  <div class="source-entry">Gamble, Lynn H.<br>2002 &nbsp;Subsistence practices and feasting rites: <span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span> identity after European colonization. <em>Historical Archaeology</em> 36(3):74–93.</div>
   <div class="source-entry">Arkush, Brooke S.<br>2011 &nbsp;Native responses to European intrusion: cultural persistence and agency among mission neophytes in Spanish colonial northern California. <em>Historical Archaeology</em> 45(4):62–90.</div>
-  <div class="source-entry">Panich, Lee M., Rob Q. Cuthrell, and Tsim D. Schneider<br>2014 &nbsp;Feeding family and ancestors: persistence of traditional Native American lifeways during the Mission Period in coastal Southern California. <em>Journal of Archaeological Science</em> 41:897–906.</div>
+  <div class="source-entry">Panich, Lee M., Rob Q. Cuthrell, and Tsim D. Schneider<br>2014 &nbsp;Feeding family and ancestors: persistence of traditional Native American lifeways during the <span data-hint="The era of Spanish Franciscan mission dominance in California, roughly 1769 to 1833, during which Indigenous peoples were incorporated into the colonial agricultural and religious system.">Mission Period</span> in coastal Southern California. <em>Journal of Archaeological Science</em> 41:897–906.</div>
   <div class="source-entry">Schneider, Tsim D.<br>2015 &nbsp;Placing refuge and the archaeology of Indigenous hinterlands in colonial California. <em>American Antiquity</em> 80(4):695–713.</div>
   <div class="source-entry">Curry, Andrew<br>2022 &nbsp;California's coastal homelands: How Native Americans defied Spanish missionaries and preserved their way of life. <em>Archaeology</em> 75(3). May/June 2022.<br>archaeology.org/issues/may-june-2022/letters-from/california-s-coastal-homelands/</div>
 </div>
@@ -1472,7 +1678,12 @@ all along.</div>
 </div>
 
 <script>
-  var PAGES = ['home','evidence','acorns','shellfish','steatite','contact','guestbook','sources'];
+  var PAGES = ['home','evidence','gamble','arkush','panich','schneider','curry','contact','guestbook','sources'];
+  (function(){
+    var n = Math.floor(Math.random() * 999999) + 1;
+    var s = n.toString().padStart(6,'0');
+    document.getElementById('visitor-num').textContent = s.slice(0,3) + ',' + s.slice(3);
+  })();
 
   function showPage(id) {
     if (PAGES.indexOf(id) === -1) id = 'home';
@@ -1579,6 +1790,17 @@ all along.</div>
   }
 </script>
 
+<!-- ═══════════════════════════════════════════════════════ HINT POPUP -->
+<div class="hint-popup popup-ad" id="hint-popup">
+  <div class="popup-titlebar">
+    <div class="popup-titlebar-title">🔍 <span id="hint-popup-word"></span></div>
+    <div class="popup-close" onclick="closeHint()">&#x2715;</div>
+  </div>
+  <div class="popup-body">
+    <div id="hint-popup-def" class="popup-text" style="margin-bottom:0;"></div>
+  </div>
+</div>
+
 <!-- ═══════════════════════════════════════════════════════ POPUP ADS -->
 
 <div class="popup-ad" id="popup-1">
@@ -1587,8 +1809,8 @@ all along.</div>
     <div class="popup-close" onclick="closePopup('popup-1')">&#x2715;</div>
   </div>
   <div class="popup-body">
-    <div class="popup-headline">CONGRATULATIONS!!<br>You've been selected for a FREE Steatite Cooking Vessel!!</div>
-    <div class="popup-text">Chumash-certified soapstone cookware — as used continuously before AND after Spanish colonization! Heat resistant! Archaeologically documented! The Spanish couldn't stop it and neither can YOU!</div>
+    <div class="popup-headline">CONGRATULATIONS!!<br>You've been selected for a FREE <span data-hint="A soft, heat-resistant soapstone quarried and shaped into cooking vessels. Its continued presence in colonial-era archaeological deposits demonstrates technological and cultural continuity across the contact period.">Steatite</span> Cooking Vessel!!</div>
+    <div class="popup-text"><span data-hint="Indigenous peoples of the Santa Barbara Channel region of coastal Southern California, known for sophisticated maritime culture, widespread trade networks, and distinctive soapstone cooking vessel technology.">Chumash</span>-certified soapstone cookware — as used continuously before AND after Spanish colonization! Heat resistant! Archaeologically documented! The Spanish couldn't stop it and neither can YOU!</div>
     <div class="popup-cite">Source: Gamble, L.H. 2002. Historical Archaeology 36(3):74–93.</div>
     <button class="popup-btn" onclick="closePopup('popup-1')">CLAIM MY FREE VESSEL &gt;&gt;</button>
     <button class="popup-btn" style="color:#888888;" onclick="closePopup('popup-1')">No thanks, I prefer European cookware</button>
@@ -1605,7 +1827,7 @@ all along.</div>
     <div class="popup-text">Fresh wild game &amp; fish — species <strong>NOT FOUND</strong> in any Spanish mission ration log!! Zooarchaeologically verified! Five northern California mission sites can't be wrong!</div>
     <div class="popup-cite">Source: Arkush, B.S. 2011. Historical Archaeology 45(4):62–90.</div>
     <button class="popup-btn" onclick="closePopup('popup-2')">ADD TO CART (hidden from friars)</button>
-    <button class="popup-btn" style="color:#888888;" onclick="closePopup('popup-2')">I only eat from ration records</button>
+    <button class="popup-btn" style="color:#888888;" onclick="closePopup('popup-2')">I only eat from <span data-hint="Written logs kept by Spanish missionaries documenting food officially distributed to mission residents. Wild species found archaeologically do not appear in them — exposing the gap between the colonial record and lived reality.">ration records</span></button>
   </div>
 </div>
 
@@ -1630,7 +1852,7 @@ all along.</div>
   </div>
   <div class="popup-body">
     <div class="popup-headline">ESCAPE TO THE HINTERLANDS!<br>Beyond Colonial Reach!</div>
-    <div class="popup-text">Prime hinterland locations — geographically removed from Spanish missions! Pre-contact subsistence patterns fully intact! Intensive fishing! Species diversity matching pre-contact assemblages! ACT NOW while the missions can't find you!</div>
+    <div class="popup-text">Prime hinterland locations — geographically removed from Spanish missions! Pre-contact subsistence patterns fully intact! Intensive fishing! Species diversity matching <span data-hint="The period before European arrival in a region. In California, refers to Indigenous lifeways that existed prior to Spanish colonization beginning in 1769.">pre-contact</span> assemblages! ACT NOW while the missions can't find you!</div>
     <div class="popup-cite">Source: Schneider, T.D. 2015. American Antiquity 80(4):695–713.</div>
     <button class="popup-btn" onclick="closePopup('popup-4')">SHOW ME HINTERLAND LISTINGS</button>
     <button class="popup-btn" style="color:#888888;" onclick="closePopup('popup-4')">I enjoy colonial surveillance</button>
@@ -1644,7 +1866,7 @@ all along.</div>
   </div>
   <div class="popup-body">
     <div class="popup-headline">LOCAL NEOPHYTE SLIPS AWAY TO FISH AT ANCESTRAL SITE</div>
-    <div class="popup-text">SHOCKING: Fish bones recovered from mission-period deposits identified as species caught FAR from mission grounds. Experts say someone "just went fishing." Spanish authorities have no comment. Friar not pictured.</div>
+    <div class="popup-text">SHOCKING: Fish bones recovered from mission-period deposits identified as species consistent with ancestral fishing locations! Experts say someone "just went fishing." Spanish baffled why suspect would not prefer mission offered portions. Friar not pictured.</div>
     <div class="popup-cite">Source: Curry, A. 2022. Archaeology 75(3), May/June 2022.</div>
     <button class="popup-btn" onclick="closePopup('popup-5')">READ FULL STORY &gt;&gt;</button>
     <button class="popup-btn" style="color:#888888;" onclick="closePopup('popup-5')">Unsubscribe from fish alerts</button>
@@ -1652,6 +1874,38 @@ all along.</div>
 </div>
 
 <script>
+  /* ── HINT SYSTEM ── */
+  window.closeHint = function() {
+    var el = document.getElementById('hint-popup');
+    el.classList.remove('visible');
+    el.style.display = 'none';
+  };
+
+  document.addEventListener('click', function(e) {
+    var target = e.target.closest('[data-hint]');
+    if (target) {
+      var word = target.textContent.replace('🔍','').trim();
+      var def  = target.dataset.hint;
+      document.getElementById('hint-popup-word').textContent = word;
+      document.getElementById('hint-popup-def').textContent  = def;
+      var popup = document.getElementById('hint-popup');
+      var rect  = target.getBoundingClientRect();
+      var pw = 260, ph = 120;
+      var left = Math.min(rect.left, window.innerWidth - pw - 16);
+      var top  = rect.bottom + 6;
+      if (top + ph > window.innerHeight) top = rect.top - ph - 6;
+      popup.style.left = Math.max(8, left) + 'px';
+      popup.style.top  = Math.max(8, top)  + 'px';
+      popup.style.display = 'block';
+      popup.classList.add('visible');
+      e.stopPropagation();
+      return;
+    }
+    /* click outside closes hint */
+    var hp = document.getElementById('hint-popup');
+    if (hp && !hp.contains(e.target)) closeHint();
+  });
+
   (function() {
     var popups = ['popup-1','popup-2','popup-3','popup-4','popup-5'];
     var margin = 20;
