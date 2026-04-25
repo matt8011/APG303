@@ -474,6 +474,91 @@
 
   .page-section { display: none; }
   .page-section.active { display: block; }
+
+  /* ── POPUP ADS ── */
+  .popup-ad {
+    position: fixed;
+    z-index: 9999;
+    width: 280px;
+    box-shadow: 3px 3px 0 #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    display: none;
+    user-select: none;
+  }
+  .popup-ad.visible { display: block; }
+  .popup-titlebar {
+    background: linear-gradient(90deg, #000080, #1084d0);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: move;
+  }
+  .popup-titlebar-title { display: flex; align-items: center; gap: 4px; }
+  .popup-close {
+    background: #d4d0c8;
+    border: 1px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    color: #000000;
+    font-size: 11px;
+    font-weight: bold;
+    width: 16px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .popup-close:hover { background: #ff4444; color: #ffffff; }
+  .popup-body {
+    background: #d4d0c8;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    padding: 10px;
+    font-size: 11px;
+    color: #000000;
+  }
+  .popup-body .popup-headline {
+    font-size: 13px;
+    font-weight: bold;
+    color: #cc0000;
+    text-align: center;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .popup-body .popup-text {
+    font-size: 10px;
+    color: #000033;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .popup-body .popup-cite {
+    font-size: 9px;
+    color: #666666;
+    font-style: italic;
+  }
+  .popup-btn {
+    display: block;
+    width: 100%;
+    background: #d4d0c8;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    color: #000000;
+    padding: 3px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .popup-btn:hover { background: #000080; color: #ffffff; }
+  .popup-btn:active { border-color: #808080 #ffffff #ffffff #808080; }
 </style>
 </head>
 <body>
@@ -1492,6 +1577,135 @@ all along.</div>
     var s = document.getElementById('contact-success');
     s.style.display = 'block';
   }
+</script>
+
+<!-- ═══════════════════════════════════════════════════════ POPUP ADS -->
+
+<div class="popup-ad" id="popup-1">
+  <div class="popup-titlebar" id="popup-1-bar">
+    <div class="popup-titlebar-title">&#128187; Special Offer!</div>
+    <div class="popup-close" onclick="closePopup('popup-1')">&#x2715;</div>
+  </div>
+  <div class="popup-body">
+    <div class="popup-headline">CONGRATULATIONS!!<br>You've been selected for a FREE Steatite Cooking Vessel!!</div>
+    <div class="popup-text">Chumash-certified soapstone cookware — as used continuously before AND after Spanish colonization! Heat resistant! Archaeologically documented! The Spanish couldn't stop it and neither can YOU!</div>
+    <div class="popup-cite">Source: Gamble, L.H. 2002. Historical Archaeology 36(3):74–93.</div>
+    <button class="popup-btn" onclick="closePopup('popup-1')">CLAIM MY FREE VESSEL &gt;&gt;</button>
+    <button class="popup-btn" style="color:#888888;" onclick="closePopup('popup-1')">No thanks, I prefer European cookware</button>
+  </div>
+</div>
+
+<div class="popup-ad" id="popup-2">
+  <div class="popup-titlebar" id="popup-2-bar">
+    <div class="popup-titlebar-title">&#128031; HOT DEAL!</div>
+    <div class="popup-close" onclick="closePopup('popup-2')">&#x2715;</div>
+  </div>
+  <div class="popup-body">
+    <div class="popup-headline">OHLONE FISH MARKET<br>DAILY SPECIAL</div>
+    <div class="popup-text">Fresh wild game &amp; fish — species <strong>NOT FOUND</strong> in any Spanish mission ration log!! Zooarchaeologically verified! Five northern California mission sites can't be wrong!</div>
+    <div class="popup-cite">Source: Arkush, B.S. 2011. Historical Archaeology 45(4):62–90.</div>
+    <button class="popup-btn" onclick="closePopup('popup-2')">ADD TO CART (hidden from friars)</button>
+    <button class="popup-btn" style="color:#888888;" onclick="closePopup('popup-2')">I only eat from ration records</button>
+  </div>
+</div>
+
+<div class="popup-ad" id="popup-3">
+  <div class="popup-titlebar" id="popup-3-bar">
+    <div class="popup-titlebar-title">&#9888;&#65039; WARNING — ACTION REQUIRED</div>
+    <div class="popup-close" onclick="closePopup('popup-3')">&#x2715;</div>
+  </div>
+  <div class="popup-body">
+    <div class="popup-headline">ARE YOU GRINDING ACORNS THE WRONG WAY??</div>
+    <div class="popup-text">Starch grain residues on YOUR grinding stones may contain native wild plant species. Our paleoethnobotanists have detected acorn processing activity INCONSISTENT with mission crop promotion policy.</div>
+    <div class="popup-cite">Source: Panich, Cuthrell &amp; Schneider 2014. J. of Archaeological Science 41:897–906.</div>
+    <button class="popup-btn" onclick="closePopup('popup-3')">SCAN MY GRINDING STONE NOW</button>
+    <button class="popup-btn" style="color:#888888;" onclick="closePopup('popup-3')">I grind only European wheat</button>
+  </div>
+</div>
+
+<div class="popup-ad" id="popup-4">
+  <div class="popup-titlebar" id="popup-4-bar">
+    <div class="popup-titlebar-title">&#127968; Real Estate Opportunity!</div>
+    <div class="popup-close" onclick="closePopup('popup-4')">&#x2715;</div>
+  </div>
+  <div class="popup-body">
+    <div class="popup-headline">ESCAPE TO THE HINTERLANDS!<br>Beyond Colonial Reach!</div>
+    <div class="popup-text">Prime hinterland locations — geographically removed from Spanish missions! Pre-contact subsistence patterns fully intact! Intensive fishing! Species diversity matching pre-contact assemblages! ACT NOW while the missions can't find you!</div>
+    <div class="popup-cite">Source: Schneider, T.D. 2015. American Antiquity 80(4):695–713.</div>
+    <button class="popup-btn" onclick="closePopup('popup-4')">SHOW ME HINTERLAND LISTINGS</button>
+    <button class="popup-btn" style="color:#888888;" onclick="closePopup('popup-4')">I enjoy colonial surveillance</button>
+  </div>
+</div>
+
+<div class="popup-ad" id="popup-5">
+  <div class="popup-titlebar" id="popup-5-bar">
+    <div class="popup-titlebar-title">&#128240; Breaking News Alert!!</div>
+    <div class="popup-close" onclick="closePopup('popup-5')">&#x2715;</div>
+  </div>
+  <div class="popup-body">
+    <div class="popup-headline">LOCAL NEOPHYTE SLIPS AWAY TO FISH AT ANCESTRAL SITE</div>
+    <div class="popup-text">SHOCKING: Fish bones recovered from mission-period deposits identified as species caught FAR from mission grounds. Experts say someone "just went fishing." Spanish authorities have no comment. Friar not pictured.</div>
+    <div class="popup-cite">Source: Curry, A. 2022. Archaeology 75(3), May/June 2022.</div>
+    <button class="popup-btn" onclick="closePopup('popup-5')">READ FULL STORY &gt;&gt;</button>
+    <button class="popup-btn" style="color:#888888;" onclick="closePopup('popup-5')">Unsubscribe from fish alerts</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var popups = ['popup-1','popup-2','popup-3','popup-4','popup-5'];
+    var margin = 20;
+
+    function randPos(el) {
+      var w = window.innerWidth  || document.documentElement.clientWidth;
+      var h = window.innerHeight || document.documentElement.clientHeight;
+      var pw = 280 + 4;
+      var ph = 220;
+      var x = margin + Math.random() * Math.max(0, w - pw - margin * 2);
+      var y = margin + Math.random() * Math.max(0, h - ph - margin * 2);
+      el.style.left = Math.round(x) + 'px';
+      el.style.top  = Math.round(y) + 'px';
+    }
+
+    function closePopup(id) {
+      var el = document.getElementById(id);
+      if (el) { el.classList.remove('visible'); el.style.display = 'none'; }
+    }
+    window.closePopup = closePopup;
+
+    /* staggered appearance */
+    var delays = [2500, 6000, 10500, 15000, 20000];
+    popups.forEach(function(id, i) {
+      setTimeout(function() {
+        var el = document.getElementById(id);
+        if (!el) return;
+        randPos(el);
+        el.style.display = 'block';
+        el.classList.add('visible');
+      }, delays[i]);
+    });
+
+    /* drag */
+    popups.forEach(function(id) {
+      var el  = document.getElementById(id);
+      var bar = document.getElementById(id + '-bar');
+      if (!el || !bar) return;
+      var dragging = false, ox = 0, oy = 0;
+      bar.addEventListener('mousedown', function(e) {
+        dragging = true;
+        ox = e.clientX - el.getBoundingClientRect().left;
+        oy = e.clientY - el.getBoundingClientRect().top;
+        el.style.zIndex = 10000;
+        e.preventDefault();
+      });
+      document.addEventListener('mousemove', function(e) {
+        if (!dragging) return;
+        el.style.left = (e.clientX - ox) + 'px';
+        el.style.top  = (e.clientY - oy) + 'px';
+      });
+      document.addEventListener('mouseup', function() { dragging = false; });
+    });
+  })();
 </script>
 
 </body>
