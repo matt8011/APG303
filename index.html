@@ -40,8 +40,8 @@
   .header-box {
     background: linear-gradient(180deg, #000066 0%, #000033 100%);
     border: 3px solid #ffff00;
-    margin: 8px;
-    padding: 12px;
+    margin: 0 8px 8px;
+    padding: 0 12px 12px;
     text-align: center;
   }
 
@@ -88,7 +88,20 @@
   .nav-bar a {
     color: #ffff00;
     text-decoration: underline;
-    cursor: default;
+    cursor: pointer;
+  }
+
+  .nav-bar a:hover {
+    color: #ffffff;
+    background: #550055;
+  }
+
+  .nav-bar a.nav-active {
+    color: #ffffff;
+    background: #660066;
+    padding: 0 4px;
+    text-decoration: none;
+    outline: 1px solid #ff00ff;
   }
 
   .main-content {
@@ -361,6 +374,106 @@
     border-bottom: none;
     margin-bottom: 0;
   }
+
+  /* Guestbook & Contact styles */
+  .gb-form {
+    background: #001122;
+    border: 2px solid #0099ff;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .gb-form label {
+    display: block;
+    color: #00ffff;
+    font-size: 11px;
+    margin-bottom: 2px;
+    margin-top: 8px;
+  }
+
+  .gb-form input,
+  .gb-form textarea {
+    width: 100%;
+    background: #000033;
+    border: 1px solid #0099ff;
+    color: #ccffcc;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    padding: 4px;
+  }
+
+  .gb-form textarea {
+    height: 60px;
+    resize: vertical;
+  }
+
+  .gb-btn {
+    margin-top: 10px;
+    background: #330066;
+    border: 2px solid #ff00ff;
+    color: #ffff00;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 14px;
+    cursor: pointer;
+  }
+
+  .gb-btn:hover {
+    background: #550099;
+  }
+
+  .gb-entries {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .gb-entry {
+    background: #001133;
+    border: 1px solid #003366;
+    padding: 8px;
+    font-size: 11px;
+  }
+
+  .gb-entry-meta {
+    color: #0099ff;
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+
+  .gb-entry-msg {
+    color: #ccffcc;
+    line-height: 1.5;
+  }
+
+  .gb-empty {
+    color: #666688;
+    font-size: 11px;
+    font-style: italic;
+    text-align: center;
+    padding: 16px;
+    border: 1px dashed #333366;
+  }
+
+  .contact-success {
+    display: none;
+    background: #001a00;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    padding: 10px;
+    text-align: center;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+
+  @keyframes welcome-breathe {
+    0%, 100% { color: #ff00ff; text-shadow: 0 0 6px #ff00ff; transform: scale(1); }
+    50% { color: #ffffff; text-shadow: 0 0 16px #ff88ff, 0 0 32px #ff00ff; transform: scale(1.12); }
+  }
+
+  .page-section { display: none; }
+  .page-section.active { display: block; }
 </style>
 </head>
 <body>
@@ -372,6 +485,10 @@
 </div>
 
 <div class="header-box">
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="assets/ezgif.com-animated-gif-maker.gif" alt="" style="height:360px; image-rendering:pixelated; display:block;">
+    <span style="font-size:15px; font-weight:bold; animation:welcome-breathe 1.8s ease-in-out infinite;">Welcome!</span>
+  </div>
   <div class="site-title">
     <span class="fire-text">&#9658;</span>
     ANCIENT CALIFORNIA MYSTERIES
@@ -394,16 +511,18 @@
 </div>
 
 <div class="nav-bar">
-  <a>HOME</a>
-  <a>THE EVIDENCE</a>
-  <a>FORBIDDEN ACORNS</a>
-  <a>SHELLFISH CONSPIRACY</a>
-  <a>STEATITE SECRETS</a>
-  <a>CONTACT WEBMASTER</a>
-  <a>GUESTBOOK (sign it!!)</a>
-  <a style="color:#ff6600;">SOURCES (yes, real ones)</a>
+  <a href="#home" data-page="home">HOME</a>
+  <a href="#evidence" data-page="evidence">THE EVIDENCE</a>
+  <a href="#acorns" data-page="acorns">FORBIDDEN ACORNS</a>
+  <a href="#shellfish" data-page="shellfish">SHELLFISH CONSPIRACY</a>
+  <a href="#steatite" data-page="steatite">STEATITE SECRETS</a>
+  <a href="#contact" data-page="contact">CONTACT WEBMASTER</a>
+  <a href="#guestbook" data-page="guestbook">GUESTBOOK (sign it!!)</a>
+  <a href="#sources" data-page="sources" style="color:#ff6600;">SOURCES (yes, real ones)</a>
 </div>
 
+<!-- ═══════════════════════════════════════════════════════ PAGE: HOME -->
+<div id="page-home" class="page-section">
 <div class="main-content">
   <div class="left-col">
 
@@ -426,8 +545,109 @@
         <p style="font-size:11px; color:#888;">
           <em>All claims on this site are supported by peer-reviewed archaeological research. Yes, really. This is a parody of sensationalist archaeology content — the facts are genuine.</em>
         </p>
+        <p style="font-size:11px; color:#aaaaff; margin-top:8px;">
+          &#9658; Use the navigation above to explore the evidence. Start with <a href="#evidence" data-page="evidence" style="color:#ffff00;">THE EVIDENCE</a> for the full case, or dive into a specific topic.
+        </p>
       </div>
     </div>
+
+    <div class="section-box">
+      <div class="section-header">
+        <span style="color:#00ff00;">&#10004;</span>
+        THE VERDICT: THEY NEVER STOPPED
+      </div>
+      <div class="body-text">
+        <p class="body-text">
+          The archaeological evidence is <span class="highlight">CLEAR</span>: Indigenous Californian coastal peoples — Chumash, Ohlone, and related communities — were not passive victims of colonization. They were <span class="highlight">active, strategic agents</span> who selectively adapted, resisted, and preserved their foodways under conditions of extreme colonial pressure.
+        </p>
+        <p class="body-text">
+          Whether through feasting ceremonies that reinforced political authority, quietly hunting game that never appeared on mission ration logs, grinding acorns on stones in mission compounds, or fishing at ancestral sites far from colonial oversight — the record is consistent across every line of evidence.
+        </p>
+        <p class="body-text">
+          The "loss narrative" promoted by colonial-era sources is <span class="highlight">contradicted by zooarchaeology, archaeobotany, isotopic analysis, and ethnohistory</span>. These food traditions were defended, maintained, and transmitted.
+        </p>
+        <div style="text-align:center; margin-top:10px; padding:8px; background:#001100; border:1px solid #00ff00;">
+          <span class="fire-text" style="font-size:16px;">THE TRUTH WAS IN THE MIDDENS ALL ALONG.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="right-col">
+    <div class="sidebar-box">
+      <div class="sidebar-title">&#9733; SITE AWARDS &#9733;</div>
+      <div class="sidebar-text" style="text-align:center;">
+        <div style="background:#333300; border:1px solid #ffff00; padding:4px; margin:4px 0; font-size:10px; color:#ffff00;">
+          &#9733; BEST ARCHAEOLOGY<br>CONSPIRACY SITE 2003 &#9733;
+        </div>
+        <div style="background:#330033; border:1px solid #ff00ff; padding:4px; margin:4px 0; font-size:10px; color:#ff00ff;">
+          100% GEOCITIES<br>CERTIFIED &#10003;
+        </div>
+        <div style="background:#001133; border:1px solid #0099ff; padding:4px; margin:4px 0; font-size:10px; color:#0099ff;">
+          FACTUALLY ACCURATE<br>DESPITE APPEARANCE
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="sidebar-title">QUICK FACTS</div>
+      <div class="sidebar-text" style="font-size:10px; line-height:1.8;">
+        <div>&#9658; Chumash: <span style="color:#ffff00;">S. California coast</span></div>
+        <div>&#9658; Ohlone: <span style="color:#ffff00;">N. California missions</span></div>
+        <div>&#9658; Steatite vessels = <span style="color:#ffff00;">cooking tech</span></div>
+        <div>&#9658; Starch grains on <span style="color:#ffff00;">grinding stones</span></div>
+        <div>&#9658; Hinterlands = <span style="color:#ffff00;">refuge zones</span></div>
+        <div>&#9658; Missions est. <span style="color:#ffff00;">1769 onward</span></div>
+        <div>&#9658; Bones &amp; seeds = <span style="color:#ffff00;">proof</span></div>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="sidebar-title">&#9888; STATUS</div>
+      <div class="sidebar-text" style="text-align:center; font-size:10px;">
+        <div class="blink" style="color:#ff0000; font-weight:bold;">UNDER CONSTRUCTION</div>
+        <div style="margin-top:6px; color:#aaaaaa;">
+          More SHOCKING<br>EVIDENCE coming<br>SOON!!
+        </div>
+        <div style="margin-top:8px; font-size:9px; color:#666;">
+          last updated<br>April 2026
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="sidebar-title">SOURCES</div>
+      <div class="sidebar-text" style="font-size:9px; line-height:1.7; color:#99bbff;">
+        <div>Gamble 2002<br><em>Historical Archaeology</em><br>36(3):74–93</div>
+        <hr style="border-color:#003366; margin:4px 0;">
+        <div>Arkush 2011<br><em>Historical Archaeology</em><br>45(4):62–90</div>
+        <hr style="border-color:#003366; margin:4px 0;">
+        <div>Panich, Cuthrell<br>&amp; Schneider 2014<br><em>J. Arch. Science</em><br>41:897–906</div>
+        <hr style="border-color:#003366; margin:4px 0;">
+        <div>Schneider 2015<br><em>American Antiquity</em><br>80(4):695–713</div>
+        <hr style="border-color:#003366; margin:4px 0;">
+        <div>Curry 2022<br><em>Archaeology</em><br>75(3)</div>
+      </div>
+    </div>
+
+    <div class="sidebar-box" style="border-color:#ff6600;">
+      <div class="sidebar-title" style="color:#ff6600; border-color:#ff6600;">WEBMASTER SAYS</div>
+      <div class="sidebar-text" style="font-size:10px; font-style:italic; color:#ffcc99;">
+        "I made this site because someone told me the old ways were gone. The archaeology says otherwise. Sign my guestbook."
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:4px;">
+      <img src="assets/wave.gif" alt="" style="width:100%; image-rendering:pixelated;">
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE: THE EVIDENCE -->
+<div id="page-evidence" class="page-section">
+<div class="main-content">
+  <div class="left-col">
 
     <div class="section-box">
       <div class="section-header">
@@ -500,16 +720,245 @@
         <div class="fact-box">
           <div class="fact-box-title">&#9830; WHAT THE SEEDS REVEAL &#9830;</div>
           <div class="fact-box-text">
-            Starch grain residues on grinding stones in mission-period deposits <span class="highlight">matched native wild plant species</span> — not the European crops the mission system promoted. People were still preparing traditional foods using traditional tools under mission supervision. <span class="citation">(Panich, Cuthrell & Schneider 2014:902)</span>
+            Starch grain residues on grinding stones in mission-period deposits <span class="highlight">matched native wild plant species</span> — not the European crops the mission system promoted. People were still preparing traditional foods using traditional tools under mission supervision. <span class="citation">(Panich, Cuthrell &amp; Schneider 2014:902)</span>
           </div>
         </div>
         <div class="evidence-row">
           <span class="evidence-number">5</span>
-          <span>Macrobotanical remains (charred seeds and plant fragments) and microbotanical evidence (phytoliths and starch grains) from mission-period sites in coastal Southern California demonstrate that wild seeds, acorns, and other gathered species continued to be processed and consumed during the Mission Period. <span class="citation">(Panich, Cuthrell & Schneider 2014:898–901)</span></span>
+          <span>Macrobotanical remains (charred seeds and plant fragments) and microbotanical evidence (phytoliths and starch grains) from mission-period sites in coastal Southern California demonstrate that wild seeds, acorns, and other gathered species continued to be processed and consumed during the Mission Period. <span class="citation">(Panich, Cuthrell &amp; Schneider 2014:898–901)</span></span>
         </div>
         <div class="evidence-row">
           <span class="evidence-number">6</span>
-          <span>The title of the article says it all: "Feeding Family and Ancestors." Maintaining traditional foodways was not just practical survival — it was an act of <span class="highlight">cultural and spiritual continuity</span> tied to ancestral identity. <span class="citation">(Panich, Cuthrell & Schneider 2014:901–904)</span></span>
+          <span>The title of the article says it all: "Feeding Family and Ancestors." Maintaining traditional foodways was not just practical survival — it was an act of <span class="highlight">cultural and spiritual continuity</span> tied to ancestral identity. <span class="citation">(Panich, Cuthrell &amp; Schneider 2014:901–904)</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-box">
+      <div class="section-header">
+        <span style="color:#ff6600;">&#9650;</span>
+        EVIDENCE FILE #4: THE HINTERLAND ESCAPE NETWORK
+      </div>
+      <div class="body-text">
+        <p class="body-text">
+          NOT EVERYONE WENT TO THE MISSIONS. Some people <span class="highlight">fled</span>. Some <span class="highlight">never went</span>. And the archaeological record of what happened in those peripheral zones — the hinterlands — is one of the most powerful datasets we have.
+        </p>
+        <div class="fact-box">
+          <div class="fact-box-title" style="color:#ff9900;">&#9660; INDIGENOUS HINTERLANDS: CLASSIFIED &#9660;</div>
+          <div class="fact-box-text" style="color:#ffddaa;">
+            Landscape archaeology combining regional survey with targeted excavation of hinterland sites — areas geographically removed from Spanish missions — reveals <span class="highlight">strong continuity with pre-contact subsistence practices</span>, particularly intensive fishing. Fish bone assemblages at these sites closely match pre-contact patterns in species diversity and processing methods. <span class="citation">(Schneider 2015:697–702, 706–707)</span>
+          </div>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">7</span>
+          <span>Schneider develops the concept of <span class="highlight">"Indigenous hinterlands"</span> — spaces beyond direct colonial control where Native Californians maintained or re-established traditional lifeways. Communities who maintained independence from the mission system preserved traditional fishing knowledge and technologies largely intact. <span class="citation">(Schneider 2015:703–710)</span></span>
+        </div>
+        <div class="gif-placeholder">
+          [ ANIMATED FISH JUMPING GIF ]<br>
+          &#9654; RESISTANCE AT THE RIVERBANK &#9654;
+        </div>
+      </div>
+    </div>
+
+    <div class="section-box">
+      <div class="section-header">
+        <span style="color:#ff00ff;">&#9670;</span>
+        EVIDENCE FILE #5: ARCHAEOLOGISTS CONFIRM — THEY SLIPPED AWAY TO FISH
+      </div>
+      <div class="body-text">
+        <p class="body-text">
+          Award-winning science journalist Andrew Curry interviewed archaeologists actively working on California mission-period sites to bring this research to the public. What he found confirms everything on this page.
+        </p>
+        <div class="evidence-row">
+          <span class="evidence-number">8</span>
+          <span>Fish bones recovered from mission-period deposits represent species caught far from mission grounds — suggesting Indigenous people were <span class="highlight">traveling to traditional fishing sites outside mission boundaries on their own terms</span>. Someone slipping away to fish at an ancestral location is the human story underneath all of this material evidence. <span class="citation">(Curry 2022)</span></span>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">9</span>
+          <span>Curry frames the material evidence — fish bones, plant remains, cooking tools — as <span class="highlight">the record of everyday resistance</span>. Ordinary objects telling a story of survival and identity. <span class="citation">(Curry 2022)</span></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="right-col">
+    <div class="sidebar-box">
+      <div class="sidebar-title">QUICK FACTS</div>
+      <div class="sidebar-text" style="font-size:10px; line-height:1.8;">
+        <div>&#9658; Chumash: <span style="color:#ffff00;">S. California coast</span></div>
+        <div>&#9658; Ohlone: <span style="color:#ffff00;">N. California missions</span></div>
+        <div>&#9658; Steatite vessels = <span style="color:#ffff00;">cooking tech</span></div>
+        <div>&#9658; Starch grains on <span style="color:#ffff00;">grinding stones</span></div>
+        <div>&#9658; Hinterlands = <span style="color:#ffff00;">refuge zones</span></div>
+        <div>&#9658; Missions est. <span style="color:#ffff00;">1769 onward</span></div>
+        <div>&#9658; Bones &amp; seeds = <span style="color:#ffff00;">proof</span></div>
+      </div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-title">SOURCES</div>
+      <div class="sidebar-text" style="font-size:9px; line-height:1.7; color:#99bbff;">
+        <div>Gamble 2002<br><em>Historical Archaeology</em><br>36(3):74–93</div>
+        <hr style="border-color:#003366; margin:4px 0;">
+        <div>Arkush 2011<br><em>Historical Archaeology</em><br>45(4):62–90</div>
+        <hr style="border-color:#003366; margin:4px 0;">
+        <div>Panich, Cuthrell<br>&amp; Schneider 2014<br><em>J. Arch. Science</em><br>41:897–906</div>
+        <hr style="border-color:#003366; margin:4px 0;">
+        <div>Schneider 2015<br><em>American Antiquity</em><br>80(4):695–713</div>
+        <hr style="border-color:#003366; margin:4px 0;">
+        <div>Curry 2022<br><em>Archaeology</em><br>75(3)</div>
+      </div>
+    </div>
+    <div class="sidebar-box" style="border-color:#ff6600;">
+      <div class="sidebar-title" style="color:#ff6600; border-color:#ff6600;">WEBMASTER SAYS</div>
+      <div class="sidebar-text" style="font-size:10px; font-style:italic; color:#ffcc99;">
+        "I made this site because someone told me the old ways were gone. The archaeology says otherwise. Sign my guestbook."
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:4px;">
+      <img src="assets/wave.gif" alt="" style="width:100%; image-rendering:pixelated;">
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE: FORBIDDEN ACORNS -->
+<div id="page-acorns" class="page-section">
+<div class="main-content">
+  <div class="left-col">
+
+    <div class="section-box pulse-border">
+      <div class="section-header">
+        <span class="blink" style="color:#ff6600;">&#9670;</span>
+        FORBIDDEN ACORNS: THE BOTANICAL COVER-UP
+      </div>
+      <div class="body-text">
+        <p>
+          The missions promoted European crops. Wheat. Corn. Cattle. The colonial project required replacing Indigenous food systems with European ones. But the <span class="highlight">SEEDS REMEMBER</span>. And the grinding stones never forgot.
+        </p>
+        <p>
+          Paleoethnobotanical analysis — starch grains, phytoliths, charred macrobotanical remains — has exposed what the colonial ration records tried to hide.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-box">
+      <div class="section-header">
+        <span class="blink" style="color:#00ffff;">&#10023;</span>
+        EVIDENCE FILE #3: THE GRINDING STONE REVELATION
+      </div>
+      <div class="body-text">
+        <p class="body-text">
+          CLASSIFIED PALEOETHNOBOTANICAL DATA: Starch grain analysis on grinding stones from mission-period contexts has revealed a truth the colonial record tried to bury.
+        </p>
+        <div class="fact-box">
+          <div class="fact-box-title">&#9830; WHAT THE SEEDS REVEAL &#9830;</div>
+          <div class="fact-box-text">
+            Starch grain residues on grinding stones in mission-period deposits <span class="highlight">matched native wild plant species</span> — not the European crops the mission system promoted. People were still preparing traditional foods using traditional tools under mission supervision. <span class="citation">(Panich, Cuthrell &amp; Schneider 2014:902)</span>
+          </div>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">5</span>
+          <span>Macrobotanical remains (charred seeds and plant fragments) and microbotanical evidence (phytoliths and starch grains) from mission-period sites in coastal Southern California demonstrate that wild seeds, acorns, and other gathered species continued to be processed and consumed during the Mission Period. <span class="citation">(Panich, Cuthrell &amp; Schneider 2014:898–901)</span></span>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">6</span>
+          <span>The title of the article says it all: "Feeding Family and Ancestors." Maintaining traditional foodways was not just practical survival — it was an act of <span class="highlight">cultural and spiritual continuity</span> tied to ancestral identity. <span class="citation">(Panich, Cuthrell &amp; Schneider 2014:901–904)</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-box">
+      <div class="section-header">&#9654; FROM THE SITE SCRIPT</div>
+      <div class="script-text" style="font-family:'Courier New',monospace; font-size:11px; color:#ddaaff; line-height:1.8; white-space:pre-wrap;"><span class="script-label">SECTION 3 — BOTANICAL EVIDENCE (Panich, Cuthrell &amp; Schneider 2014):</span>
+Starch grain residues recovered from grinding stones in mission-period contexts matched
+native wild plant species — not the European crops the mission system promoted.
+Macrobotanical and phytolith evidence from coastal Southern California sites confirms
+that acorns and wild seeds continued to be processed and consumed during the Mission
+Period, framing food preparation as an act of cultural and spiritual continuity tied to
+ancestral identity <span class="script-cite">(Panich, Cuthrell &amp; Schneider 2014:898–904)</span>.</div>
+    </div>
+
+  </div>
+
+  <div class="right-col">
+    <div class="sidebar-box" style="border-color:#ff9900;">
+      <div class="sidebar-title" style="color:#ff9900; border-color:#ff9900;">&#9670; ACORN FACTS</div>
+      <div class="sidebar-text" style="font-size:10px; line-height:1.8; color:#ffddaa;">
+        <div>&#9658; Acorns = staple food</div>
+        <div>&#9658; Required leaching<br>&nbsp;&nbsp;&nbsp;(removes tannins)</div>
+        <div>&#9658; Ground on <span style="color:#ffff00;">manos &amp; metates</span></div>
+        <div>&#9658; Starch grains<br>&nbsp;&nbsp;&nbsp;survive in soil</div>
+        <div>&#9658; Found IN mission<br>&nbsp;&nbsp;&nbsp;compounds</div>
+        <div>&#9658; Missions promoted<br>&nbsp;&nbsp;&nbsp;<span style="color:#ff6666;">wheat &amp; corn</span></div>
+        <div>&#9658; <span style="color:#ffff00;">ACORNS WON</span></div>
+      </div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-title">SOURCE</div>
+      <div class="sidebar-text" style="font-size:9px; line-height:1.7; color:#99bbff;">
+        <div>Panich, Cuthrell<br>&amp; Schneider 2014<br><em>J. Arch. Science</em><br>41:897–906</div>
+      </div>
+    </div>
+    <div class="sidebar-box" style="border-color:#ff6600;">
+      <div class="sidebar-title" style="color:#ff6600; border-color:#ff6600;">WEBMASTER SAYS</div>
+      <div class="sidebar-text" style="font-size:10px; font-style:italic; color:#ffcc99;">
+        "I made this site because someone told me the old ways were gone. The archaeology says otherwise. Sign my guestbook."
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:4px;">
+      <img src="assets/wave.gif" alt="" style="width:100%; image-rendering:pixelated;">
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE: SHELLFISH CONSPIRACY -->
+<div id="page-shellfish" class="page-section">
+<div class="main-content">
+  <div class="left-col">
+
+    <div class="section-box pulse-border">
+      <div class="section-header">
+        <span class="blink" style="color:#00ffff;">&#9670;</span>
+        THE SHELLFISH CONSPIRACY: FISH BONES DON'T LIE
+      </div>
+      <div class="body-text">
+        <p>
+          The missions kept ration records. They recorded wheat, beef, corn. What they did NOT record — what they <span class="highlight">COULD NOT EXPLAIN</span> — was the fish. The shellfish. The wild game. The bones in the soil that weren't supposed to be there.
+        </p>
+        <p>
+          The zooarchaeological record has blown the official colonial narrative wide open.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-box">
+      <div class="section-header">
+        <span style="color:#ffff00;">&#9670;</span>
+        EVIDENCE FILE #2: MISSION LIFE — THE BONES DON'T LIE
+      </div>
+      <div class="body-text">
+        <p class="body-text">
+          Here is what THEY don't teach you in school. Even inside the mission system — under direct colonial surveillance — Native Californians kept hunting, fishing, and gathering their own food.
+        </p>
+        <div class="fact-box">
+          <div class="fact-box-title">&#9889; ZOOARCHAEOLOGY BLOWS THE LID OFF &#9889;</div>
+          <div class="fact-box-text">
+            Faunal assemblages from five Spanish mission sites in northern California — associated with Ohlone (Costanoan) populations — show wild game and fish species that do <span class="highlight">NOT APPEAR</span> in the missions' formal ration records. Neophytes were supplementing their diet with traditional foods entirely on their own initiative. <span class="citation">(Arkush 2011:74–76)</span>
+          </div>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">3</span>
+          <span>Despite the rigid controls of mission life, Ohlone neophytes continued to fish, gather shellfish, hunt game, and collect wild plant foods alongside formal mission rations. Arkush synthesizes faunal data with baptism registers, ration logs, and administrative correspondence to establish this pattern. <span class="citation">(Arkush 2011:64–68)</span></span>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-number">4</span>
+          <span>This is not assimilation. The material record shows Indigenous people <span class="highlight">actively navigating colonial constraints</span> rather than submitting to them — quiet, everyday resistance through the act of eating. <span class="citation">(Arkush 2011:72–85)</span></span>
+        </div>
+        <div class="gif-placeholder">
+          [ SPINNING FISH BONE GIF ]<br>
+          *** THE RECORD SPEAKS ***
         </div>
       </div>
     </div>
@@ -561,58 +1010,219 @@
     </div>
 
     <div class="section-box">
-      <div class="section-header">
-        <span style="color:#00ff00;">&#10004;</span>
-        THE VERDICT: THEY NEVER STOPPED
-      </div>
-      <div class="body-text">
-        <p class="body-text">
-          The archaeological evidence is <span class="highlight">CLEAR</span>: Indigenous Californian coastal peoples — Chumash, Ohlone, and related communities — were not passive victims of colonization. They were <span class="highlight">active, strategic agents</span> who selectively adapted, resisted, and preserved their foodways under conditions of extreme colonial pressure.
-        </p>
-        <p class="body-text">
-          Whether through feasting ceremonies that reinforced political authority, quietly hunting game that never appeared on mission ration logs, grinding acorns on stones in mission compounds, or fishing at ancestral sites far from colonial oversight — the record is consistent across every line of evidence.
-        </p>
-        <p class="body-text">
-          The "loss narrative" promoted by colonial-era sources is <span class="highlight">contradicted by zooarchaeology, archaeobotany, isotopic analysis, and ethnohistory</span>. These food traditions were defended, maintained, and transmitted.
-        </p>
-        <div style="text-align:center; margin-top:10px; padding:8px; background:#001100; border:1px solid #00ff00;">
-          <span class="fire-text" style="font-size:16px;">THE TRUTH WAS IN THE MIDDENS ALL ALONG.</span>
-        </div>
-      </div>
+      <div class="section-header">&#9654; FROM THE SITE SCRIPT</div>
+      <div class="script-text" style="font-family:'Courier New',monospace; font-size:11px; color:#ddaaff; line-height:1.8; white-space:pre-wrap;"><span class="script-label">SECTION 2 — MISSION LIFE AND FAUNAL RESISTANCE (Arkush 2011):</span>
+Zooarchaeological analysis of five Spanish mission sites in northern California
+associated with Ohlone communities reveals wild game and fish species not found in
+formal mission ration records. Despite the rigid controls of mission life, neophytes
+continued to hunt, fish, and gather traditional foods on their own initiative — evidence
+of cultural agency and persistence rather than assimilation
+<span class="script-cite">(Arkush 2011:64–76)</span>.
+
+<span class="script-label">SECTION 4 — INDIGENOUS HINTERLANDS (Schneider 2015):</span>
+Not everyone entered the mission system. Landscape archaeology at hinterland sites —
+areas geographically removed from Spanish colonial settlements — shows strong continuity
+with pre-contact subsistence practices, particularly intensive fishing. Fish bone
+assemblages at these sites match pre-contact patterns in species diversity and processing
+methods, suggesting that communities who maintained independence from the missions
+preserved traditional fishing knowledge largely intact. Schneider terms these spaces
+"Indigenous hinterlands" — zones of refuge and cultural persistence
+<span class="script-cite">(Schneider 2015:697–710)</span>.
+
+<span class="script-label">SECTION 5 — THE HUMAN STORY (Curry 2022):</span>
+Fish bones recovered from mission-period deposits represent species caught far from
+mission grounds — suggesting Indigenous people were traveling to traditional fishing
+sites outside mission boundaries on their own terms. Science journalist Andrew Curry,
+drawing on interviews with active researchers, frames these ordinary objects — bones,
+seeds, grinding stones — as the material record of everyday resistance
+<span class="script-cite">(Curry 2022)</span>.</div>
     </div>
 
   </div>
 
   <div class="right-col">
-
+    <div class="sidebar-box" style="border-color:#00ccff;">
+      <div class="sidebar-title" style="color:#00ccff; border-color:#00ccff;">&#9670; FISH FACTS</div>
+      <div class="sidebar-text" style="font-size:10px; line-height:1.8; color:#aaeeff;">
+        <div>&#9658; Ohlone: <span style="color:#ffff00;">shellfish experts</span></div>
+        <div>&#9658; Middens = <span style="color:#ffff00;">shell mounds</span></div>
+        <div>&#9658; Fish bones in<br>&nbsp;&nbsp;&nbsp;mission deposits</div>
+        <div>&#9658; NOT in ration logs</div>
+        <div>&#9658; Hinterland sites =<br>&nbsp;&nbsp;&nbsp;<span style="color:#ffff00;">pre-contact patterns</span></div>
+        <div>&#9658; They went fishing<br>&nbsp;&nbsp;&nbsp;<span style="color:#00ff00;">on their own terms</span></div>
+      </div>
+    </div>
     <div class="sidebar-box">
-      <div class="sidebar-title">&#9733; SITE AWARDS &#9733;</div>
-      <div class="sidebar-text" style="text-align:center;">
-        <div style="background:#333300; border:1px solid #ffff00; padding:4px; margin:4px 0; font-size:10px; color:#ffff00;">
-          &#9733; BEST ARCHAEOLOGY<br>CONSPIRACY SITE 2003 &#9733;
+      <div class="sidebar-title">SOURCES</div>
+      <div class="sidebar-text" style="font-size:9px; line-height:1.7; color:#99bbff;">
+        <div>Arkush 2011<br><em>Historical Archaeology</em><br>45(4):62–90</div>
+        <hr style="border-color:#003366; margin:4px 0;">
+        <div>Schneider 2015<br><em>American Antiquity</em><br>80(4):695–713</div>
+        <hr style="border-color:#003366; margin:4px 0;">
+        <div>Curry 2022<br><em>Archaeology</em><br>75(3)</div>
+      </div>
+    </div>
+    <div class="sidebar-box" style="border-color:#ff6600;">
+      <div class="sidebar-title" style="color:#ff6600; border-color:#ff6600;">WEBMASTER SAYS</div>
+      <div class="sidebar-text" style="font-size:10px; font-style:italic; color:#ffcc99;">
+        "I made this site because someone told me the old ways were gone. The archaeology says otherwise. Sign my guestbook."
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:4px;">
+      <img src="assets/wave.gif" alt="" style="width:100%; image-rendering:pixelated;">
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE: STEATITE SECRETS -->
+<div id="page-steatite" class="page-section">
+<div class="main-content">
+  <div class="left-col">
+
+    <div class="section-box pulse-border">
+      <div class="section-header">
+        <span class="blink" style="color:#ffcc00;">&#9670;</span>
+        STEATITE SECRETS: THE SOAPSTONE THAT SURVIVED COLONIZATION
+      </div>
+      <div class="body-text">
+        <p>
+          Steatite — soapstone — is a soft, heat-resistant stone that the Chumash mastered for cooking. Steatite cooking vessels are <span class="highlight">a distinctly Chumash technology</span>. When the Spanish arrived, you might expect these vessels to disappear from the archaeological record.
+        </p>
+        <p>
+          <span class="highlight">THEY DID NOT DISAPPEAR.</span>
+        </p>
+        <p>
+          Their continued presence in post-contact deposits is one of the most direct pieces of material evidence for technological and cultural continuity in the entire record.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-box">
+      <div class="section-header">
+        <span style="color:#ff0000;">&#9888;</span>
+        EVIDENCE FILE #1: FEASTING AS RESISTANCE (THE CHUMASH)
+      </div>
+      <div class="body-text">
+        <div class="fact-box">
+          <div class="fact-box-title">&#9733; SHOCKING FACT &#9733;</div>
+          <div class="fact-box-text">
+            Chumash leaders didn't just keep cooking their traditional foods after colonization — they kept hosting <span class="highlight">ELABORATE FEASTS</span> as a deliberate political strategy to maintain social authority. The Spanish had no idea this was happening. Or maybe they did and couldn't stop it.
+          </div>
         </div>
-        <div style="background:#330033; border:1px solid #ff00ff; padding:4px; margin:4px 0; font-size:10px; color:#ff00ff;">
-          100% GEOCITIES<br>CERTIFIED &#10003;
+        <div class="evidence-row">
+          <span class="evidence-number">1</span>
+          <span>Faunal assemblages, steatite cooking vessels, mortars, and refuse deposits from post-contact Chumash sites in the Santa Barbara region show that traditional subsistence practices and feasting rites continued after European arrival. Gamble cross-references this material evidence with Spanish mission records to establish the pattern. <span class="citation">(Gamble 2002:75–78)</span></span>
         </div>
-        <div style="background:#001133; border:1px solid #0099ff; padding:4px; margin:4px 0; font-size:10px; color:#0099ff;">
-          FACTUALLY ACCURATE<br>DESPITE APPEARANCE
+        <div class="evidence-row">
+          <span class="evidence-number">2</span>
+          <span>Chumash leaders <span class="highlight">deliberately maintained traditional feasting ceremonies</span> as a mechanism for preserving social identity and political authority — feasting was not just about food but served crucial functions in sustaining community leadership and social networks. <span class="citation">(Gamble 2002:80–88)</span></span>
+        </div>
+        <div class="fact-box">
+          <div class="fact-box-title" style="color:#ffcc00;">&#9670; THE SOAPSTONE SMOKING GUN &#9670;</div>
+          <div class="fact-box-text" style="color:#ffeeaa;">
+            <span class="highlight">Steatite (soapstone) cooking vessels</span> — a distinctly Chumash technology — continue to appear in post-contact archaeological deposits. They didn't just keep eating their food. They kept cooking it <span class="highlight">the same way</span>. <span class="citation">(Gamble 2002:82)</span>
+          </div>
         </div>
       </div>
     </div>
 
+    <div class="section-box">
+      <div class="section-header">&#9654; FROM THE SITE SCRIPT</div>
+      <div class="script-text" style="font-family:'Courier New',monospace; font-size:11px; color:#ddaaff; line-height:1.8; white-space:pre-wrap;"><span class="script-label">SECTION 1 — PRE-CONTACT FOODWAYS &amp; FEASTING (Gamble 2002):</span>
+Chumash communities in the Santa Barbara region maintained elaborate feasting
+ceremonies after Spanish colonization as a deliberate strategy to preserve social
+identity and political authority. Material evidence — steatite cooking vessels, mortars,
+faunal assemblages, and refuse deposits — shows traditional food preparation
+technologies persisting in post-contact deposits. Notably, steatite cooking vessels,
+a distinctly Chumash technology, continued to appear in colonial-era archaeological
+contexts, indicating that the Chumash maintained not just what they ate but specifically
+how they cooked it <span class="script-cite">(Gamble 2002:75–88)</span>.</div>
+    </div>
+
+  </div>
+
+  <div class="right-col">
+    <div class="sidebar-box" style="border-color:#ffcc00;">
+      <div class="sidebar-title" style="color:#ffcc00; border-color:#ffcc00;">&#9670; STEATITE FACTS</div>
+      <div class="sidebar-text" style="font-size:10px; line-height:1.8; color:#ffeeaa;">
+        <div>&#9658; Steatite = soapstone</div>
+        <div>&#9658; Heat resistant</div>
+        <div>&#9658; <span style="color:#ffff00;">Chumash technology</span></div>
+        <div>&#9658; Santa Barbara region</div>
+        <div>&#9658; Post-contact deposits<br>&nbsp;&nbsp;&nbsp;<span style="color:#00ff00;">still have them</span></div>
+        <div>&#9658; Feasting = political<br>&nbsp;&nbsp;&nbsp;authority</div>
+        <div>&#9658; Not just WHAT they<br>&nbsp;&nbsp;&nbsp;ate — HOW they<br>&nbsp;&nbsp;&nbsp;<span style="color:#ffff00;">cooked it</span></div>
+      </div>
+    </div>
     <div class="sidebar-box">
-      <div class="sidebar-title">QUICK FACTS</div>
-      <div class="sidebar-text" style="font-size:10px; line-height:1.8;">
-        <div>&#9658; Chumash: <span style="color:#ffff00;">S. California coast</span></div>
-        <div>&#9658; Ohlone: <span style="color:#ffff00;">N. California missions</span></div>
-        <div>&#9658; Steatite vessels = <span style="color:#ffff00;">cooking tech</span></div>
-        <div>&#9658; Starch grains on <span style="color:#ffff00;">grinding stones</span></div>
-        <div>&#9658; Hinterlands = <span style="color:#ffff00;">refuge zones</span></div>
-        <div>&#9658; Missions est. <span style="color:#ffff00;">1769 onward</span></div>
-        <div>&#9658; Bones &amp; seeds = <span style="color:#ffff00;">proof</span></div>
+      <div class="sidebar-title">SOURCE</div>
+      <div class="sidebar-text" style="font-size:9px; line-height:1.7; color:#99bbff;">
+        <div>Gamble 2002<br><em>Historical Archaeology</em><br>36(3):74–93</div>
+      </div>
+    </div>
+    <div class="sidebar-box" style="border-color:#ff6600;">
+      <div class="sidebar-title" style="color:#ff6600; border-color:#ff6600;">WEBMASTER SAYS</div>
+      <div class="sidebar-text" style="font-size:10px; font-style:italic; color:#ffcc99;">
+        "I made this site because someone told me the old ways were gone. The archaeology says otherwise. Sign my guestbook."
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:4px;">
+      <img src="assets/wave.gif" alt="" style="width:100%; image-rendering:pixelated;">
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE: CONTACT -->
+<div id="page-contact" class="page-section">
+<div class="main-content">
+  <div class="left-col">
+    <div class="section-box pulse-border">
+      <div class="section-header">
+        <span class="spinning-star">&#9993;</span>
+        CONTACT THE WEBMASTER
+      </div>
+      <div class="body-text">
+        <p>Got a tip? Found more evidence? Spotted a steatite vessel in your backyard? <span class="highlight">CONTACT ME IMMEDIATELY.</span></p>
+        <p>Also accepting: corrections, additional sources, fan mail, and hate mail from mission revivalists.</p>
+      </div>
+      <div class="gb-form" id="contact-form-wrap">
+        <label for="c-name">YOUR NAME (or alias)</label>
+        <input type="text" id="c-name" placeholder="e.g. Concerned Archaeologist">
+        <label for="c-email">YOUR EMAIL</label>
+        <input type="email" id="c-email" placeholder="you@example.com">
+        <label for="c-subject">SUBJECT</label>
+        <input type="text" id="c-subject" placeholder="e.g. URGENT: steatite vessel sighting">
+        <label for="c-msg">MESSAGE</label>
+        <textarea id="c-msg" placeholder="Type your message here..."></textarea>
+        <button class="gb-btn" onclick="submitContact()">&#9658; SEND MESSAGE TO WEBMASTER &#9668;</button>
+        <div class="contact-success" id="contact-success">
+          &#9733; MESSAGE RECEIVED &#9733;<br>
+          <span style="font-size:10px; color:#aaffaa;">The webmaster will respond within 3–5 business decades.</span>
+        </div>
       </div>
     </div>
 
+    <div class="section-box">
+      <div class="section-header">&#9888; IMPORTANT NOTICE</div>
+      <div class="body-text" style="font-size:11px;">
+        <p>This site is an APG 303 public engagement project (Matthew Kyle, April 2026). All factual claims are peer-reviewed and cited. This is a parody of sensationalist archaeology content — the archaeology is real.</p>
+        <p>For academic inquiries, see the <a href="#sources" data-page="sources" style="color:#ffff00;">SOURCES</a> page for full works cited.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-col">
+    <div class="sidebar-box" style="border-color:#ff6600;">
+      <div class="sidebar-title" style="color:#ff6600; border-color:#ff6600;">WEBMASTER SAYS</div>
+      <div class="sidebar-text" style="font-size:10px; font-style:italic; color:#ffcc99;">
+        "I made this site because someone told me the old ways were gone. The archaeology says otherwise. Sign my guestbook."
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:4px;">
+      <img src="assets/wave.gif" alt="" style="width:100%; image-rendering:pixelated;">
+    </div>
     <div class="sidebar-box">
       <div class="sidebar-title">&#9888; STATUS</div>
       <div class="sidebar-text" style="text-align:center; font-size:10px;">
@@ -625,31 +1235,71 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+</div>
 
-    <div class="sidebar-box">
-      <div class="sidebar-title">SOURCES</div>
-      <div class="sidebar-text" style="font-size:9px; line-height:1.7; color:#99bbff;">
-        <div>Gamble 2002<br><em>Historical Archaeology</em><br>36(3):74–93</div>
-        <hr style="border-color:#003366; margin:4px 0;">
-        <div>Arkush 2011<br><em>Historical Archaeology</em><br>45(4):62–90</div>
-        <hr style="border-color:#003366; margin:4px 0;">
-        <div>Panich, Cuthrell<br>&amp; Schneider 2014<br><em>J. Arch. Science</em><br>41:897–906</div>
-        <hr style="border-color:#003366; margin:4px 0;">
-        <div>Schneider 2015<br><em>American Antiquity</em><br>80(4):695–713</div>
-        <hr style="border-color:#003366; margin:4px 0;">
-        <div>Curry 2022<br><em>Archaeology</em><br>75(3)</div>
+<!-- ═══════════════════════════════════════════════════════ PAGE: GUESTBOOK -->
+<div id="page-guestbook" class="page-section">
+<div class="main-content">
+  <div class="left-col">
+    <div class="section-box pulse-border">
+      <div class="section-header">
+        <span class="spinning-star">&#9998;</span>
+        GUESTBOOK — SIGN IT!!
+      </div>
+      <div class="body-text">
+        <p>Welcome to the ANCIENT CALIFORNIA MYSTERIES guestbook. Leave your mark. Tell the world you were here. The webmaster reads every entry. <span class="highlight">EVERY. SINGLE. ONE.</span></p>
+      </div>
+      <div class="gb-form">
+        <label for="gb-name">YOUR NAME *</label>
+        <input type="text" id="gb-name" placeholder="e.g. xXx_AcornTruth_xXx" maxlength="60">
+        <label for="gb-loc">YOUR LOCATION</label>
+        <input type="text" id="gb-loc" placeholder="e.g. Santa Barbara, CA" maxlength="80">
+        <label for="gb-msg">YOUR MESSAGE *</label>
+        <textarea id="gb-msg" placeholder="What do you think of this site? Have you heard about the steatite vessels? Speak your truth."></textarea>
+        <button class="gb-btn" onclick="signGuestbook()">&#9670; SIGN THE GUESTBOOK &#9668;</button>
+        <div id="gb-error" style="display:none; color:#ff6666; font-size:11px; margin-top:6px;">&#9888; Please fill in your name and message.</div>
       </div>
     </div>
 
+    <div class="section-box">
+      <div class="section-header">
+        <span style="color:#00ffff;">&#9660;</span>
+        ENTRIES (<span id="gb-count">0</span>)
+      </div>
+      <div class="gb-entries" id="gb-entries-list">
+        <div class="gb-empty" id="gb-empty-msg">No entries yet. Be the first to sign!!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-col">
+    <div class="sidebar-box" style="border-color:#ff00ff;">
+      <div class="sidebar-title" style="color:#ff00ff; border-color:#ff00ff;">&#9733; SIGN &#9733;</div>
+      <div class="sidebar-text" style="font-size:10px; color:#ffaaff; text-align:center; line-height:1.8;">
+        <div>Tell the world</div>
+        <div>you were here</div>
+        <div style="margin:6px 0; color:#ffff00;">&#9670; &#9670; &#9670;</div>
+        <div>Entries saved</div>
+        <div>in your browser</div>
+      </div>
+    </div>
     <div class="sidebar-box" style="border-color:#ff6600;">
       <div class="sidebar-title" style="color:#ff6600; border-color:#ff6600;">WEBMASTER SAYS</div>
       <div class="sidebar-text" style="font-size:10px; font-style:italic; color:#ffcc99;">
         "I made this site because someone told me the old ways were gone. The archaeology says otherwise. Sign my guestbook."
       </div>
     </div>
-
+    <div style="text-align:center; margin-top:4px;">
+      <img src="assets/wave.gif" alt="" style="width:100%; image-rendering:pixelated;">
+    </div>
   </div>
 </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE: SOURCES -->
+<div id="page-sources" class="page-section">
 
 <div class="script-section">
   <div class="script-header">&#9654; SITE SCRIPT / CAPTIONS (APG 303 submission — Matthew Kyle, April 2026)</div>
@@ -720,6 +1370,9 @@ all along.</div>
   <div class="source-entry">Curry, Andrew<br>2022 &nbsp;California's coastal homelands: How Native Americans defied Spanish missionaries and preserved their way of life. <em>Archaeology</em> 75(3). May/June 2022.<br>archaeology.org/issues/may-june-2022/letters-from/california-s-coastal-homelands/</div>
 </div>
 
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ FOOTER (always visible) -->
 <div class="under-construction">
   <div class="diagonal-stripe"></div>
   <span>&nbsp;THIS PAGE IS UNDER CONSTRUCTION — LAST UPDATED: APRIL 2026 — BEST VIEWED AT 800x600 RESOLUTION&nbsp;</span>
@@ -732,6 +1385,114 @@ all along.</div>
   APG 303 Public Engagement Project — Matthew Kyle &nbsp;|&nbsp;
   No actual GeoCities servers were harmed.
 </div>
+
+<script>
+  var PAGES = ['home','evidence','acorns','shellfish','steatite','contact','guestbook','sources'];
+
+  function showPage(id) {
+    if (PAGES.indexOf(id) === -1) id = 'home';
+    PAGES.forEach(function(p) {
+      var el = document.getElementById('page-' + p);
+      if (el) el.classList.toggle('active', p === id);
+    });
+    document.querySelectorAll('.nav-bar a[data-page]').forEach(function(a) {
+      a.classList.toggle('nav-active', a.dataset.page === id);
+    });
+    window.scrollTo(0, 0);
+    if (id === 'guestbook') renderGuestbook();
+  }
+
+  function getHash() {
+    return (location.hash || '#home').replace('#','') || 'home';
+  }
+
+  window.addEventListener('hashchange', function() { showPage(getHash()); });
+  window.addEventListener('load', function() { showPage(getHash()); });
+
+  /* nav links inside page content also navigate */
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[data-page]');
+    if (a) {
+      e.preventDefault();
+      var pg = a.dataset.page;
+      location.hash = '#' + pg;
+      showPage(pg);
+    }
+  });
+
+  /* ── GUESTBOOK ── */
+  var GB_KEY = 'acm_guestbook';
+
+  function loadEntries() {
+    try { return JSON.parse(localStorage.getItem(GB_KEY) || '[]'); }
+    catch(e) { return []; }
+  }
+
+  function saveEntries(arr) {
+    try { localStorage.setItem(GB_KEY, JSON.stringify(arr)); } catch(e) {}
+  }
+
+  function signGuestbook() {
+    var name = document.getElementById('gb-name').value.trim();
+    var loc  = document.getElementById('gb-loc').value.trim();
+    var msg  = document.getElementById('gb-msg').value.trim();
+    var err  = document.getElementById('gb-error');
+    if (!name || !msg) { err.style.display = 'block'; return; }
+    err.style.display = 'none';
+    var entries = loadEntries();
+    var now = new Date();
+    var dateStr = now.toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'});
+    entries.unshift({ name: name, loc: loc, msg: msg, date: dateStr });
+    saveEntries(entries);
+    document.getElementById('gb-name').value = '';
+    document.getElementById('gb-loc').value = '';
+    document.getElementById('gb-msg').value = '';
+    renderGuestbook();
+  }
+
+  function renderGuestbook() {
+    var entries = loadEntries();
+    var list = document.getElementById('gb-entries-list');
+    var empty = document.getElementById('gb-empty-msg');
+    var count = document.getElementById('gb-count');
+    if (!list) return;
+    count.textContent = entries.length;
+    if (entries.length === 0) {
+      empty.style.display = 'block';
+      var existing = list.querySelectorAll('.gb-entry');
+      existing.forEach(function(el) { el.remove(); });
+      return;
+    }
+    empty.style.display = 'none';
+    var existing = list.querySelectorAll('.gb-entry');
+    existing.forEach(function(el) { el.remove(); });
+    entries.forEach(function(e) {
+      var div = document.createElement('div');
+      div.className = 'gb-entry';
+      var meta = document.createElement('div');
+      meta.className = 'gb-entry-meta';
+      meta.textContent = e.name + (e.loc ? ' — ' + e.loc : '') + ' | ' + e.date;
+      var msgEl = document.createElement('div');
+      msgEl.className = 'gb-entry-msg';
+      msgEl.textContent = e.msg;
+      div.appendChild(meta);
+      div.appendChild(msgEl);
+      list.appendChild(div);
+    });
+  }
+
+  /* ── CONTACT ── */
+  function submitContact() {
+    var name = document.getElementById('c-name').value.trim();
+    var email = document.getElementById('c-email').value.trim();
+    var msg  = document.getElementById('c-msg').value.trim();
+    if (!msg) { alert('Please enter a message.'); return; }
+    document.getElementById('contact-form-wrap').style.opacity = '0.4';
+    document.getElementById('contact-form-wrap').style.pointerEvents = 'none';
+    var s = document.getElementById('contact-success');
+    s.style.display = 'block';
+  }
+</script>
 
 </body>
 </html>
