@@ -1966,58 +1966,70 @@ all along.</div>
   /* ── tomato explosion loop ─────────────────────────────── */
   (function() {
     var GIF_SRC = 'assets/tomato-tomato-throw.gif';
-    var GIF_MS  = 5900;  // ← tune to match actual gif loop duration
-    var COUNT   = 200;
+    var GIF_MS  = 5900;
+    var COUNT   = window.innerWidth < 768 ? 80 : 200;
     var FADE_MS = 200;
-    var extras  = [];
+    var pool    = [];
     var many    = false;
 
-    function resetGif(img) {
-      img.src = '';
-      img.src = GIF_SRC;
-    }
+    function resetGif(img) { img.src = ''; img.src = GIF_SRC; }
 
     function getOriginals() {
       return document.getElementById('tomato-container')
         .querySelectorAll('img.tomato-original');
     }
 
-    function spawnMany() {
+    function randomisePool() {
       var c  = document.getElementById('tomato-container');
       var cw = c.offsetWidth;
       var ch = c.offsetHeight;
-      /* reset originals to frame 0 so everything starts together */
-      getOriginals().forEach(function(img) { resetGif(img); });
-      for (var i = 0; i < COUNT; i++) {
-        var img  = document.createElement('img');
-        img.src  = GIF_SRC;
-        img.style.cssText =
-          'position:absolute;pointer-events:none;z-index:10;opacity:0;' +
-          'transition:opacity ' + FADE_MS + 'ms ease;' +
-          'width:300px;height:100%;object-fit:cover;' +
-          'left:'   + (((Math.random()-0.5)+(Math.random()-0.5)+(Math.random()-0.5))*cw*0.35) + 'px;' +
-          'top:'    + (((Math.random()-0.5)+(Math.random()-0.5)+(Math.random()-0.5))*ch*0.35) + 'px;';
-        c.appendChild(img);
-        extras.push(img);
-        (function(el) {
-          requestAnimationFrame(function() {
-            requestAnimationFrame(function() { el.style.opacity = '1'; });
-          });
-        })(img);
-      }
+      pool.forEach(function(img) {
+        img.style.left = (((Math.random()-0.5)+(Math.random()-0.5)+(Math.random()-0.5))*cw*0.35) + 'px';
+        img.style.top  = (((Math.random()-0.5)+(Math.random()-0.5)+(Math.random()-0.5))*ch*0.35) + 'px';
+      });
+    }
+
+    /* build pool on load in small batches so it never blocks the main thread */
+    function initPool() {
+      var c = document.getElementById('tomato-container');
+      if (!c) return;
+      var BATCH = 20, i = 0;
+      (function addBatch() {
+        var end = Math.min(i + BATCH, COUNT);
+        for (; i < end; i++) {
+          var img = document.createElement('img');
+          img.src = GIF_SRC;
+          img.style.cssText =
+            'position:absolute;pointer-events:none;z-index:10;opacity:0;' +
+            'transition:opacity ' + FADE_MS + 'ms ease;' +
+            'width:300px;height:100%;object-fit:cover;left:0;top:0;';
+          c.appendChild(img);
+          pool.push(img);
+        }
+        if (i < COUNT) setTimeout(addBatch, 0);
+      })();
+    }
+
+    function spawnMany() {
+      randomisePool();
+      getOriginals().forEach(resetGif);
+      pool.forEach(resetGif);
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          pool.forEach(function(img) { img.style.opacity = '1'; });
+        });
+      });
     }
 
     function removeMany() {
-      var toRemove = extras.slice();
-      extras = [];
-      toRemove.forEach(function(img) {
-        img.style.opacity = '0';
-        setTimeout(function() {
-          if (img.parentNode) img.parentNode.removeChild(img);
-        }, FADE_MS);
-      });
-      /* reset originals to frame 0 so the 2-gif phase also starts clean */
-      getOriginals().forEach(function(img) { resetGif(img); });
+      pool.forEach(function(img) { img.style.opacity = '0'; });
+      getOriginals().forEach(resetGif);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPool);
+    } else {
+      initPool();
     }
 
     setInterval(function() {
