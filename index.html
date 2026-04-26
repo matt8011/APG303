@@ -682,6 +682,18 @@
   .clean-page .source-table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 16px 0 24px 0; }
   .clean-page .source-table th { background: #eee; border: 1px solid #bbb; padding: 6px 8px; text-align: left; font-weight: bold; }
   .clean-page .source-table td { border: 1px solid #ccc; padding: 6px 8px; vertical-align: top; line-height: 1.5; }
+  .dossier-layout { display: flex; gap: 24px; align-items: flex-start; }
+  .dossier-toc { position: sticky; top: 24px; width: 180px; flex-shrink: 0; background: #f7f7f7; border: 1px solid #ddd; padding: 12px 14px; font-family: Arial, Helvetica, sans-serif !important; }
+  .dossier-toc-title { font-weight: bold; font-size: 11px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; color: #444; border-bottom: 1px solid #ccc; padding-bottom: 6px; }
+  .dossier-toc ul { list-style: none; margin: 0; padding: 0; }
+  .dossier-toc > ul > li { margin: 4px 0; }
+  .dossier-toc a { color: #0000cc; text-decoration: none; font-size: 11px; line-height: 1.45; display: block; cursor: pointer; }
+  .dossier-toc a:hover { text-decoration: underline; color: #000099; }
+  .dossier-toc ul ul { margin-left: 10px; margin-top: 2px; margin-bottom: 2px; }
+  .dossier-toc ul ul li { margin: 2px 0; }
+  .dossier-toc ul ul a { color: #333366; font-size: 10px; }
+  .dossier-content { flex: 1; min-width: 0; }
+  @media (max-width: 599px) { .dossier-layout { flex-direction: column; } .dossier-toc { width: 100%; box-sizing: border-box; position: static; } }
 </style>
 </head>
 <body>
@@ -1802,15 +1814,53 @@ all along.</div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ SECRET PAGE: SITE SCRIPT -->
-<div id="page-script" class="page-section clean-page">
+<div id="page-script" class="page-section clean-page" style="max-width:1060px;">
   <a class="back-link" href="#sources" data-page="sources">&#8592; back to sources</a>
   <h1>Final Research Dossier: Indigenous Subsistence Persistence and Agency in Colonial California</h1>
   <p class="meta">Matthew Kyle &nbsp;|&nbsp; APG 303: Archaeology of the Americas &nbsp;|&nbsp; April 29, 2026</p>
 
-  <h2>Project Overview</h2>
+  <div class="dossier-layout">
+
+  <!-- TOC -->
+  <nav class="dossier-toc">
+    <div class="dossier-toc-title">Contents</div>
+    <ul>
+      <li><a onclick="scrollToDossier('dos-overview')">Project Overview</a></li>
+      <li><a onclick="scrollToDossier('dos-sources-table')">Table of Sources</a></li>
+      <li><a onclick="scrollToDossier('dos-annot-bib')">Annotated Bibliography</a>
+        <ul>
+          <li><a onclick="scrollToDossier('dos-gamble')">Gamble, Lynn H.</a></li>
+          <li><a onclick="scrollToDossier('dos-eerkens')">Eerkens, Jelmer W., Lee M. Panich, Christopher Canzonieri, and Christopher Zimmer</a></li>
+          <li><a onclick="scrollToDossier('dos-reddy')">Reddy, Seetha N.</a></li>
+          <li><a onclick="scrollToDossier('dos-schneider')">Schneider, Tsim D.</a></li>
+          <li><a onclick="scrollToDossier('dos-curry')">Curry, Andrew</a></li>
+        </ul>
+      </li>
+      <li><a onclick="scrollToDossier('dos-public-eng')">Public Engagement Product</a></li>
+      <li><a onclick="scrollToDossier('dos-script-captions')">Site Script / Captions</a>
+        <ul>
+          <li><a onclick="scrollToDossier('dos-format-note')">Format Note</a></li>
+          <li><a onclick="scrollToDossier('dos-intro')">Introduction</a></li>
+          <li><a onclick="scrollToDossier('dos-s1')">Section 1 &#x2014; FEASTS OF DEFIANCE (Gamble 2015)</a></li>
+          <li><a onclick="scrollToDossier('dos-s2')">Section 2 &#x2014; THE CALCULUS FILES (Eerkens et al. 2025)</a></li>
+          <li><a onclick="scrollToDossier('dos-s3')">Section 3 &#x2014; SEEDS OF RESISTANCE (Reddy 2015)</a></li>
+          <li><a onclick="scrollToDossier('dos-s4')">Section 4 &#x2014; REFUGE ZONES: CLASSIFIED (Schneider 2015)</a></li>
+          <li><a onclick="scrollToDossier('dos-s5')">Section 5 &#x2014; GONE FISHING!! (Curry 2022)</a></li>
+          <li><a onclick="scrollToDossier('dos-conclusion')">Conclusion</a></li>
+        </ul>
+      </li>
+      <li><a onclick="scrollToDossier('dos-popup')">Popup Ads</a></li>
+      <li><a onclick="scrollToDossier('dos-reflection')">Reflection on the Research Project</a></li>
+    </ul>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="dossier-content">
+
+  <h2 id="dos-overview">Project Overview</h2>
   <p>The dominant narrative of Spanish colonization in California treats the ever-changing Indigenous culture as something that happened to Native peoples rather than something they actively forged on their own terms. Archaeological research has steadily dismantled that view. Chumash and related coastal communities made materially traceable decisions about which subsistence practices to maintain, intensify, or abandon &#x2014; choices visible in faunal assemblages, carbonized plant remains, shell middens, feasting vessels, and mission-period waste heaps. I chose this topic because it demands a more honest account of what colonialism actually accomplished, and what it failed to. It centers Native people as active, strategic agents rather than passive victims of conquest, a framing that is both historically accurate and ethically necessary. The sources gathered here trace subsistence decisions before and after European arrival and what those changes reveal about Indigenous resilience, resistance, and identity &#x2014; evidence that the loss narrative embedded in colonial-era accounts is contradicted at every methodological scale, from landscape archaeology to individual body chemistry.</p>
 
-  <h2>Table of Sources (Revised)</h2>
+  <h2 id="dos-sources-table">Table of Sources (Revised)</h2>
   <p>Note: Sources were revised after the initial submission. Gamble (2002) was updated to the 2015 revised publication in the same journal. Arkush (2011) and Panich, Cuthrell &amp; Schneider (2014) were replaced by Eerkens et al. (2025) and Reddy (2015) respectively, in order to incorporate molecular-level bioarchaeological evidence and a dedicated paleoethnobotanical dataset from a geographically distinct community (Gabrieli&#xf1;o/Tongva, Los Angeles Basin). Schneider (2015) and Curry (2022) remain unchanged.</p>
 
   <table class="source-table">
@@ -1856,9 +1906,9 @@ all along.</div>
     </tbody>
   </table>
 
-  <h2>Annotated Bibliography</h2>
+  <h2 id="dos-annot-bib">Annotated Bibliography</h2>
 
-  <div class="source-block">
+  <div class="source-block" id="dos-gamble">
     <p class="cite-line"><strong>Gamble, Lynn H.</strong><br>2015 &nbsp;Subsistence practices and feasting rites: Chumash identity after European colonization. <em>Historical Archaeology</em> 49(2):115&#x2013;135.</p>
     <ul>
       <li><strong>Author credentials:</strong> Gamble is a Professor Emerita of Anthropology at UC Santa Barbara, where she also completed her PhD, and the author of <em>The Chumash World at European Contact</em> (2008, UC Press). Four decades of fieldwork and publication in the Santa Barbara Channel region make her the primary authority on Chumash political economy, exchange systems, and culture contact.</li>
@@ -1869,7 +1919,7 @@ all along.</div>
     </ul>
   </div>
 
-  <div class="source-block">
+  <div class="source-block" id="dos-eerkens">
     <p class="cite-line"><strong>Eerkens, Jelmer W., Lee M. Panich, Christopher Canzonieri, and Christopher Zimmer (editors)</strong><br>2025 &nbsp;<em>Native Persistence at a California Mission Outpost: The Bioarchaeology and History of the Asistencia de San Pedro y San Pablo.</em> University of Florida Press, Gainesville.</p>
     <ul>
       <li><strong>Author credentials:</strong> Eerkens directs UC Davis&#x2019;s Archaeometry Lab, specializing in diet and behavior through skeletal chemistry. Panich (Santa Clara University) researches Indigenous-colonial interactions in California and co-edited <em>Indigenous Landscapes and Spanish Missions</em> (2014) with Schneider, who appears later in this bibliography. Canzonieri brings twenty-five years of California CRM practice; Zimmer represents the Amah Mutsun Tribal Band (the state-designated Most Likely Descendants group for south-San Francisco through Monterey Bay) embedding Indigenous community perspectives in the volume&#x2019;s structure.</li>
@@ -1880,7 +1930,7 @@ all along.</div>
     </ul>
   </div>
 
-  <div class="source-block">
+  <div class="source-block" id="dos-reddy">
     <p class="cite-line"><strong>Reddy, Seetha N.</strong><br>2015 &nbsp;Feeding family and ancestors: persistence of traditional Native American lifeways during the Mission Period in coastal Southern California. <em>Journal of Anthropological Archaeology</em> 37:48&#x2013;66.</p>
     <ul>
       <li><strong>Author credentials:</strong> Reddy is an independent paleoethnobotanist at Reddy Anthropology Consulting in Davis, California, specializing in plant remains from California coastal contexts. The article emerged from the Playa Vista Archaeological and Historical Project in the Ballona Lagoon area of Los Angeles, which produced a Mission Period botanical assemblage larger than most single-site studies generate.</li>
@@ -1891,7 +1941,7 @@ all along.</div>
     </ul>
   </div>
 
-  <div class="source-block">
+  <div class="source-block" id="dos-schneider">
     <p class="cite-line"><strong>Schneider, Tsim D.</strong><br>2015 &nbsp;Placing refuge and the archaeology of Indigenous hinterlands in colonial California. <em>American Antiquity</em> 80(4):695&#x2013;713.</p>
     <ul>
       <li><strong>Author credentials:</strong> Schneider is an Assistant Professor of Anthropology at UC Santa Cruz and a citizen of the Federated Indians of Graton Rancheria &#x2014; a Coast Miwok and Southern Pomo tribe whose federal recognition was revoked in 1958 and restored in 2000, an experience that directly informs his research agenda. He co-edited <em>Indigenous Landscapes and Spanish Missions</em> (2014, University of Arizona Press) with Panich.</li>
@@ -1902,7 +1952,7 @@ all along.</div>
     </ul>
   </div>
 
-  <div class="source-block">
+  <div class="source-block" id="dos-curry">
     <p class="cite-line"><strong>Curry, Andrew</strong><br>2022 &nbsp;California&#x2019;s coastal homelands: How Native Americans defied Spanish missionaries and preserved their way of life. <em>Archaeology</em> 75(3). May/June 2022.<br>archaeology.org/issues/may-june-2022/letters-from/california-s-coastal-homelands/, accessed April 12, 2026.</p>
     <ul>
       <li><strong>Author credentials:</strong> Curry is a freelance science journalist based in Berlin with a BA from Georgetown University and an MA from Stanford University. A contributing editor at <em>Archaeology</em> magazine, he writes regularly for <em>National Geographic</em>, <em>Science</em>, <em>Nature</em>, and <em>Wired</em>, and his work appears in <em>The Best American Science and Nature Writing</em>. He is not an archaeologist; he was chosen partly for this reason, as his article represents how these findings reach a public audience beyond the specialized readership of academic journals.</li>
@@ -1913,40 +1963,40 @@ all along.</div>
     </ul>
   </div>
 
-  <h2>Public Engagement Product</h2>
+  <h2 id="dos-public-eng">Public Engagement Product</h2>
   <p><strong>Format:</strong> Single-page HTML/CSS/JavaScript website, hosted via GitHub Pages.<br>
   <strong>URL:</strong> <a href="https://matt8011.github.io/APG303/" style="color:#0000cc;">https://matt8011.github.io/APG303/</a></p>
 
-  <h3>Site Script / Captions</h3>
+  <h3 id="dos-script-captions">Site Script / Captions</h3>
   <p class="meta">APG 303 submission &#x2014; Matthew Kyle, April 2026</p>
 
-  <div class="script-section-head">Format Note</div>
+  <div class="script-section-head" id="dos-format-note">Format Note</div>
   <p class="script-body">This website is a parody of early-2000s GeoCities-era &#x201c;conspiracy theory&#x201d; and &#x201c;ancient mysteries&#x201d; websites. The format is deliberately over-the-top: flashing text, dark backgrounds, sensationalist headers, fake &#x201c;classified dossiers,&#x201d; and popup ads styled after Windows 98 dialog boxes. The pseudo-scientific presentation is the vehicle for accurate, cited archaeological content. All factual claims are in my own words and sourced with in-text citations and page numbers. A vocabulary tooltip system allows non-specialist readers to click underlined technical terms for plain-English definitions without interrupting the main text. The site is accessible via any web browser with no special software required.</p>
 
   <div class="script-section-head">Script</div>
 
-  <div class="script-section-head" style="border-left-color:#bbb; margin-left:13px;">Introduction</div>
+  <div class="script-section-head" id="dos-intro" style="border-left-color:#bbb; margin-left:13px;">Introduction</div>
   <p class="script-body">When Spanish missionaries arrived on the California coast in 1769, they assumed they could replace thousands of years of Indigenous food knowledge with European agriculture. The archaeological record tells a different story &#x2014; one of strategic resistance, adaptation, and survival.</p>
 
-  <div class="script-section-head" style="border-left-color:#bbb; margin-left:13px;">Section 1 &#x2014; FEASTS OF DEFIANCE (Gamble 2015)</div>
+  <div class="script-section-head" id="dos-s1" style="border-left-color:#bbb; margin-left:13px;">Section 1 &#x2014; FEASTS OF DEFIANCE (Gamble 2015)</div>
   <p class="script-body">Chumash communities maintained elaborate feasting ceremonies after Spanish colonization as a deliberate strategy to preserve social identity and political authority &#x2014; what Gamble calls a &#x201c;hidden transcript&#x201d; of cultural continuity operating beneath colonial surveillance. Material assemblages from three post-contact villages (Helo&#x2019;, Humaliwo, Talepop) show steatite cooking vessel production not merely persisting but accelerating under colonialism &#x2014; vessels grew larger and more elaborately decorated, appearing in greater quantities in historical-period cemeteries (Gamble 2015:115&#x2013;130).</p>
 
-  <div class="script-section-head" style="border-left-color:#bbb; margin-left:13px;">Section 2 &#x2014; THE CALCULUS FILES (Eerkens et al. 2025)</div>
+  <div class="script-section-head" id="dos-s2" style="border-left-color:#bbb; margin-left:13px;">Section 2 &#x2014; THE CALCULUS FILES (Eerkens et al. 2025)</div>
   <p class="script-body">Dental calculus proteomics on fifteen Ohlone individuals buried at a mission outpost in Pacifica detected deer, otter, and beaver proteins in virtually every individual &#x2014; evidence that traditional wild game persisted in the diet at the molecular level, inside bodies the missions could not fully control. Nicotine appeared across all sex and age groups, demonstrating that tobacco use survived mission supervision. Nearly all individuals were buried with traditional grave goods in defiance of Catholic doctrine (Eerkens et al. 2025: ch. 5, 7, 8).</p>
 
-  <div class="script-section-head" style="border-left-color:#bbb; margin-left:13px;">Section 3 &#x2014; SEEDS OF RESISTANCE (Reddy 2015)</div>
+  <div class="script-section-head" id="dos-s3" style="border-left-color:#bbb; margin-left:13px;">Section 3 &#x2014; SEEDS OF RESISTANCE (Reddy 2015)</div>
   <p class="script-body">Over 400,000 carbonized seeds from Mission Period sites in the Los Angeles Basin reveal that native wild grasses &#x2014; Maygrass at 67.9% and Little Barley at 13.4% &#x2014; dominate plant assemblages across every context analyzed. Introduced European domesticates constitute under 1% of mourning ceremony offerings. A single burned basket offering contained over 267,000 Maygrass seeds. In the most sacred contexts, colonial plants were not just absent &#x2014; they were actively excluded (Reddy 2015:54&#x2013;60).</p>
 
-  <div class="script-section-head" style="border-left-color:#bbb; margin-left:13px;">Section 4 &#x2014; REFUGE ZONES: CLASSIFIED (Schneider 2015)</div>
+  <div class="script-section-head" id="dos-s4" style="border-left-color:#bbb; margin-left:13px;">Section 4 &#x2014; REFUGE ZONES: CLASSIFIED (Schneider 2015)</div>
   <p class="script-body">Not everyone entered the mission system. Landscape archaeology at hinterland sites &#x2014; areas geographically removed from Spanish colonial settlements &#x2014; shows strong continuity with pre-contact subsistence practices, particularly intensive fishing. Fish bone assemblages at these sites match pre-contact patterns in species diversity and processing methods, suggesting that communities who maintained independence from the missions preserved traditional fishing knowledge largely intact. Schneider terms these spaces &#x201c;Indigenous hinterlands&#x201d; &#x2014; zones of refuge and cultural persistence (Schneider 2015:697&#x2013;710).</p>
 
-  <div class="script-section-head" style="border-left-color:#bbb; margin-left:13px;">Section 5 &#x2014; GONE FISHING!! (Curry 2022)</div>
+  <div class="script-section-head" id="dos-s5" style="border-left-color:#bbb; margin-left:13px;">Section 5 &#x2014; GONE FISHING!! (Curry 2022)</div>
   <p class="script-body">Fish bones recovered from mission-period deposits represent species caught far from mission grounds &#x2014; suggesting Indigenous people were traveling to traditional fishing sites outside mission boundaries on their own terms. Science journalist Andrew Curry, drawing on interviews with active researchers, frames these ordinary objects &#x2014; bones, seeds, grinding stones &#x2014; as the material record of everyday resistance (Curry 2022).</p>
 
-  <div class="script-section-head" style="border-left-color:#bbb; margin-left:13px;">Conclusion</div>
+  <div class="script-section-head" id="dos-conclusion" style="border-left-color:#bbb; margin-left:13px;">Conclusion</div>
   <p class="script-body">The loss narrative embedded in colonial-era accounts is contradicted by zooarchaeological, archaeobotanical, isotopic, and ethnohistoric evidence. Indigenous Californian coastal peoples were strategic agents who defended and maintained their foodways &#x2014; inside missions, outside them, and in the spaces in between. The truth was in the middens all along.</p>
 
-  <div class="script-section-head">Popup Ads</div>
+  <div class="script-section-head" id="dos-popup">Popup Ads</div>
   <p class="script-body">The site includes five timed popup ads styled as Windows 98 dialog boxes, each parodying a recognizable early-internet ad genre while referencing a specific source finding. The joke in all five is identical: the most outrageous-sounding claim is the one that is peer-reviewed and documented.</p>
   <p class="script-body"><strong>Popup 1</strong> (prize alert) &#x2014; &#x201c;Free Steatite Cooking Vessel&#x201d; &#x2014; Gamble (2015:118&#x2013;120) on steatite production accelerating post-contact.</p>
   <p class="script-body"><strong>Popup 2</strong> (e-commerce) &#x2014; &#x201c;Ohlone Fish Market Daily Special&#x201d; &#x2014; Eerkens et al. (2025, ch. 7) on traditionally hunted animal proteins in dental calculus.</p>
@@ -1954,13 +2004,16 @@ all along.</div>
   <p class="script-body"><strong>Popup 4</strong> (real estate) &#x2014; &#x201c;Escape to the Hinterlands&#x201d; &#x2014; Schneider (2015:695&#x2013;701) on Indigenous hinterlands beyond colonial surveillance.</p>
   <p class="script-body"><strong>Popup 5</strong> (breaking news) &#x2014; &#x201c;Local Neophyte Slips Away to Fish&#x201d; &#x2014; Curry (2022) on fish bones and obsidian sourced from ancestral locations far from missions.</p>
 
-  <h2>Reflection on the Research Project</h2>
+  <h2 id="dos-reflection">Reflection on the Research Project</h2>
   <p>When I first considered formats for the public engagement product, my instinct was to create a parody TikTok video in the style of sensationalist pseudo-archaeology content &#x2014; the kind of short-form clickbait that dramatizes archaeological finds and strips them of nuance for views. That format appealed to me because it would have directly satirized the kind of content that does real damage to how people understand the past. But I landed instead on an early-2000s GeoCities-style website, and I think it was the right call for several reasons. The format suited my existing skills in HTML and CSS, which meant I could actually execute it well rather than approximating something I was less comfortable with. More importantly, the GeoCities aesthetic carries its own narrative logic: the lone individual with a dial-up connection, publishing The Truth the establishment doesn&#x2019;t want you to know. That framing mapped almost perfectly onto what the archaeology actually argues &#x2014; that the colonial record suppressed or ignored evidence of Indigenous persistence, and that the material record tells a different story. The joke writes itself. The parody is the argument.</p>
   <p>The format also gave me something I hadn&#x2019;t anticipated: genuine creative investment. Building a full single-page website with navigation, source-specific tabs, popup ads styled as Windows 98 dialog boxes, and an embedded guestbook was a larger technical undertaking than I expected. I had worked with HTML before but had not built anything at this scale. Getting the aesthetic right &#x2014; the dark starfield background, the animated marquee text, the blinking visitor counter &#x2014; required iterating on details that had nothing to do with archaeology and everything to do with whether the joke landed. That tension between aesthetic commitment and factual rigor turned out to be generative. Every design choice had to serve the content, and every piece of content had to be accurate enough to withstand scrutiny. The parody format is not an excuse for sloppiness; if anything, it raises the stakes, because the humor collapses the moment a fact is wrong.</p>
   <p>The research process itself surprised me in ways I did not anticipate at the outset. I went into the project expecting to find evidence of Indigenous resistance and persistence &#x2014; that was the thesis from the beginning. What I did not expect was the sheer diversity of methods archaeologists are now using to recover that evidence. Dental calculus proteomics detecting deer and otter proteins inside individual bodies at a mission outpost. Over 400,000 carbonized seeds sorted by context type to identify deliberate exclusion of colonial plant foods from mourning ceremonies. AMS radiocarbon dates on charred basketry from shellmound sites establishing occupation patterns across generations of colonial disruption. Stable isotope analysis, landscape archaeology, metabolomic profiling, Harrington ethnographic interviews cross-referenced against material assemblages. The methodological range across five sources was wider than I had imagined, and it made the argument more convincing precisely because the same conclusion kept emerging from completely different lines of evidence. That convergence was the most intellectually satisfying part of the research.</p>
   <p>The most demanding part of the process was working through the Eerkens et al. (2025) edited volume. The journal articles had clear abstracts and defined argument structures that made efficient reading possible. A book-length edited volume does not. I skimmed each chapter first to map the structure and identify where the relevant evidence was concentrated, took notes, and then returned for a more rigorous read of the methodological and findings chapters. It was time-consuming, and I remain uncertain whether I did the book&#x2019;s full argument justice in the website&#x2019;s condensed treatment. If I were doing this project again, I would limit my source selection to journal articles. The additional depth a book provides is real, but so is the time cost, and the format of this assignment &#x2014; producing a public-facing product rather than a seminar paper &#x2014; rewards clarity and selectability over comprehensiveness.</p>
   <p>The feedback I received on earlier submissions was largely positive, with minimal required revisions. That was gratifying but also meant that the most significant changes to the project came from my own reassessment of the sources rather than from external correction. Between the initial source table submission and the final annotated bibliography, I replaced two of the five sources &#x2014; Arkush (2011) and Panich, Cuthrell &amp; Schneider (2014) &#x2014; with Eerkens et al. (2025) and Reddy (2015). I also updated Gamble (2002) to the 2015 revised publication. Those decisions were driven by wanting sources that each contributed a methodologically distinct line of evidence: material culture and feasting assemblages (Gamble), molecular bioarchaeology (Eerkens et al.), paleoethnobotany (Reddy), landscape archaeology (Schneider), and journalistic synthesis (Curry). The final source set is more methodologically coherent than the initial one, and the website is stronger for it.</p>
   <p>The major strength of the public engagement product is the format itself. The GeoCities parody is immediately legible to anyone who spent time on the early internet, and the disconnect between the absurd aesthetic and the rigorously cited content creates a kind of cognitive surprise that I think is more memorable than a straightforward infographic or brochure would have been. The argument &#x2014; that colonial accounts of Indigenous cultural erasure are contradicted by the archaeological record &#x2014; lands harder when it arrives via a blinking visitor counter and a Windows 98 popup ad than it would in a clean academic format. The weakness is the same as the strength: the format is so distinctive that it risks overshadowing the content for some audiences. Someone who engages primarily with the aesthetic might miss how carefully the citations are integrated, or how deliberately the source-specific pages build toward the site&#x2019;s central argument. That is a real limitation, and it is one I would think about more carefully if I were to revise the project. If I had more time, I would add more period-accurate interactive elements &#x2014; images that load slowly, more elaborate animated GIFs, perhaps a fake loading bar &#x2014; to deepen the comedic commitment and make the parody even more legible as intentional. The joke should be obvious immediately. The archaeology should take a moment to sink in.</p>
+
+  </div><!-- /dossier-content -->
+  </div><!-- /dossier-layout -->
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ FOOTER (always visible) -->
@@ -1984,6 +2037,11 @@ all along.</div>
     var s = n.toString().padStart(6,'0');
     document.getElementById('visitor-num').textContent = s.slice(0,3) + ',' + s.slice(3);
   })();
+
+  function scrollToDossier(id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
 
   function showPage(id) {
     if (PAGES.indexOf(id) === -1) id = 'home';
