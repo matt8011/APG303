@@ -734,9 +734,12 @@
         <p>
           What the historical and archaeological record reveals is <span class="highlight">NOT a story of loss</span> — it is a story of <span class="highlight">STRATEGIC RESISTANCE, ADAPTATION, AND SURVIVAL</span>. This site presents the DOCUMENTED EVIDENCE. We have the bones. We have the seeds. We have the cooking stones.
         </p>
-        <div class="gif-placeholder">
-          [ ANIMATED EAGLE GIF LOADING... ]<br>
-          &#9670; &#9670; &#9670;
+        <div style="text-align:center;">
+          <div id="tomato-container" style="position:relative; display:inline-block; width:300px; overflow:hidden;">
+            <img src="assets/merica.png" alt="" style="width:300px; display:block;">
+            <img src="assets/tomato-tomato-throw.gif" alt="" class="tomato-original" style="position:absolute; top:-60px; left:0; width:300px; height:100%; object-fit:cover;">
+            <img src="assets/tomato-tomato-throw.gif" alt="" class="tomato-original" style="position:absolute; top:-95px; left:25px; width:300px; height:100%; object-fit:cover;">
+          </div>
         </div>
         <p style="font-size:11px; color:#888;">
           <em>All claims on this site are supported by peer-reviewed archaeological research. Yes, really. This is a parody of sensationalist archaeology content — the facts are genuine.</em>
@@ -1959,6 +1962,69 @@ all along.</div>
     var s = document.getElementById('contact-success');
     s.style.display = 'block';
   }
+
+  /* ── tomato explosion loop ─────────────────────────────── */
+  (function() {
+    var GIF_SRC = 'assets/tomato-tomato-throw.gif';
+    var GIF_MS  = 5900;  // ← tune to match actual gif loop duration
+    var COUNT   = 200;
+    var FADE_MS = 200;
+    var extras  = [];
+    var many    = false;
+
+    function resetGif(img) {
+      img.src = '';
+      img.src = GIF_SRC;
+    }
+
+    function getOriginals() {
+      return document.getElementById('tomato-container')
+        .querySelectorAll('img.tomato-original');
+    }
+
+    function spawnMany() {
+      var c  = document.getElementById('tomato-container');
+      var cw = c.offsetWidth;
+      var ch = c.offsetHeight;
+      /* reset originals to frame 0 so everything starts together */
+      getOriginals().forEach(function(img) { resetGif(img); });
+      for (var i = 0; i < COUNT; i++) {
+        var img  = document.createElement('img');
+        img.src  = GIF_SRC;
+        img.style.cssText =
+          'position:absolute;pointer-events:none;z-index:10;opacity:0;' +
+          'transition:opacity ' + FADE_MS + 'ms ease;' +
+          'width:300px;height:100%;object-fit:cover;' +
+          'left:'   + (((Math.random()-0.5)+(Math.random()-0.5)+(Math.random()-0.5))*cw*0.35) + 'px;' +
+          'top:'    + (((Math.random()-0.5)+(Math.random()-0.5)+(Math.random()-0.5))*ch*0.35) + 'px;';
+        c.appendChild(img);
+        extras.push(img);
+        (function(el) {
+          requestAnimationFrame(function() {
+            requestAnimationFrame(function() { el.style.opacity = '1'; });
+          });
+        })(img);
+      }
+    }
+
+    function removeMany() {
+      var toRemove = extras.slice();
+      extras = [];
+      toRemove.forEach(function(img) {
+        img.style.opacity = '0';
+        setTimeout(function() {
+          if (img.parentNode) img.parentNode.removeChild(img);
+        }, FADE_MS);
+      });
+      /* reset originals to frame 0 so the 2-gif phase also starts clean */
+      getOriginals().forEach(function(img) { resetGif(img); });
+    }
+
+    setInterval(function() {
+      many = !many;
+      if (many) spawnMany(); else removeMany();
+    }, GIF_MS);
+  })();
 </script>
 
 <!-- ═══════════════════════════════════════════════════════ HINT POPUP -->
