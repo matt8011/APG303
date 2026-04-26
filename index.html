@@ -126,6 +126,13 @@
     gap: 8px;
   }
 
+  @media (max-width: 599px) {
+    body { min-width: 0; }
+    .main-content {
+      grid-template-columns: 1fr;
+    }
+  }
+
   .section-box {
     background: #000033;
     border: 2px solid #00ff00;
